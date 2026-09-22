@@ -1,0 +1,183 @@
+autocannon -m GET -c 20 -d 1 -p 2 -w 2 "http://localhost:3000/simple"
+
+autocannon is used to send the request to a API
+it is used to test the scalability of the API
+
+-w -> how many worker is from client side
+-c -> how many tcp connection we made to server
+-p -> how many request we can send at the same time
+-d -> duration it will test the API ..here it will test for 1ms
+
+
+
+//result for express
+
+dspl_009@DSPL-009s-Mac-mini ~ % autocannon -m GET -c 20 -d 1 -p 2 "http://localhost:3000/simple"
+Running 1s test @ http://localhost:3000/simple
+20 connections with 2 pipelining factor
+
+
+┌─────────┬──────┬──────┬───────┬──────┬─────────┬─────────┬───────┐
+│ Stat    │ 2.5% │ 50%  │ 97.5% │ 99%  │ Avg     │ Stdev   │ Max   │
+├─────────┼──────┼──────┼───────┼──────┼─────────┼─────────┼───────┤
+│ Latency │ 0 ms │ 0 ms │ 1 ms  │ 1 ms │ 0.29 ms │ 0.52 ms │ 20 ms │
+└─────────┴──────┴──────┴───────┴──────┴─────────┴─────────┴───────┘
+┌───────────┬─────────┬─────────┬─────────┬─────────┬─────────┬───────┬─────────┐
+│ Stat      │ 1%      │ 2.5%    │ 50%     │ 97.5%   │ Avg     │ Stdev │ Min     │
+├───────────┼─────────┼─────────┼─────────┼─────────┼─────────┼───────┼─────────┤
+│ Req/Sec   │ 55,039  │ 55,039  │ 55,039  │ 55,039  │ 55,024  │ 0     │ 55,032  │
+├───────────┼─────────┼─────────┼─────────┼─────────┼─────────┼───────┼─────────┤
+│ Bytes/Sec │ 14.5 MB │ 14.5 MB │ 14.5 MB │ 14.5 MB │ 14.5 MB │ 0 B   │ 14.5 MB │
+└───────────┴─────────┴─────────┴─────────┴─────────┴─────────┴───────┴─────────┘
+
+Req/Bytes counts sampled once per second.
+# of samples: 1
+
+55k requests in 1.01s, 14.5 MB read
+
+
+//result for fastify
+
+dspl_009@DSPL-009s-Mac-mini ~ % autocannon -m GET -c 20 -d 1 -p 2 "http://localhost:3001/simple"
+Running 1s test @ http://localhost:3001/simple
+20 connections with 2 pipelining factor
+
+
+┌─────────┬──────┬──────┬───────┬──────┬─────────┬─────────┬───────┐
+│ Stat    │ 2.5% │ 50%  │ 97.5% │ 99%  │ Avg     │ Stdev   │ Max   │
+├─────────┼──────┼──────┼───────┼──────┼─────────┼─────────┼───────┤
+│ Latency │ 0 ms │ 0 ms │ 0 ms  │ 0 ms │ 0.01 ms │ 0.39 ms │ 26 ms │
+└─────────┴──────┴──────┴───────┴──────┴─────────┴─────────┴───────┘
+┌───────────┬──────────┬──────────┬──────────┬──────────┬──────────┬───────┬──────────┐
+│ Stat      │ 1%       │ 2.5%     │ 50%      │ 97.5%    │ Avg      │ Stdev │ Min      │
+├───────────┼──────────┼──────────┼──────────┼──────────┼──────────┼───────┼──────────┤
+│ Req/Sec   │ 1,15,519 │ 1,15,519 │ 1,15,519 │ 1,15,519 │ 1,15,488 │ 0     │ 1,15,500 │
+├───────────┼──────────┼──────────┼──────────┼──────────┼──────────┼───────┼──────────┤
+│ Bytes/Sec │ 23 MB    │ 23 MB    │ 23 MB    │ 23 MB    │ 23 MB    │ 0 B   │ 23 MB    │
+└───────────┴──────────┴──────────┴──────────┴──────────┴──────────┴───────┴──────────┘
+
+Req/Bytes counts sampled once per second.
+# of samples: 1
+
+116k requests in 1.01s, 23 MB read
+
+
+//result for cpeak
+dspl_009@DSPL-009s-Mac-mini ~ % autocannon -m GET -c 20 -d 1 -p 2 "http://localhost:3002/simple"
+Running 1s test @ http://localhost:3002/simple
+20 connections with 2 pipelining factor
+
+
+┌─────────┬──────┬──────┬───────┬──────┬─────────┬─────────┬───────┐
+│ Stat    │ 2.5% │ 50%  │ 97.5% │ 99%  │ Avg     │ Stdev   │ Max   │
+├─────────┼──────┼──────┼───────┼──────┼─────────┼─────────┼───────┤
+│ Latency │ 0 ms │ 0 ms │ 0 ms  │ 0 ms │ 0.02 ms │ 0.38 ms │ 25 ms │
+└─────────┴──────┴──────┴───────┴──────┴─────────┴─────────┴───────┘
+┌───────────┬──────────┬──────────┬──────────┬──────────┬──────────┬───────┬──────────┐
+│ Stat      │ 1%       │ 2.5%     │ 50%      │ 97.5%    │ Avg      │ Stdev │ Min      │
+├───────────┼──────────┼──────────┼──────────┼──────────┼──────────┼───────┼──────────┤
+│ Req/Sec   │ 1,04,831 │ 1,04,831 │ 1,04,831 │ 1,04,831 │ 1,04,800 │ 0     │ 1,04,829 │
+├───────────┼──────────┼──────────┼──────────┼──────────┼──────────┼───────┼──────────┤
+│ Bytes/Sec │ 19.2 MB  │ 19.2 MB  │ 19.2 MB  │ 19.2 MB  │ 19.2 MB  │ 0 B   │ 19.2 MB  │
+└───────────┴──────────┴──────────┴──────────┴──────────┴──────────┴───────┴──────────┘
+
+Req/Bytes counts sampled once per second.
+# of samples: 1
+
+105k requests in 1.01s, 19.2 MB read
+
+
+
+//result for large data 
+
+dspl_009@DSPL-009s-Mac-mini ~ % autocannon -m PATCH \                                           
+  --connections 5 --duration 20 --pipelining 2 --workers 1 \
+  -H "Content-Type: application/json" \
+  -b '{"foo1":"test","foo2":"test","foo3":"test","foo4":"test","foo5":"test","foo6":"test","foo7":"test","foo8":"test","foo9":"test","foo10":"test"}' \
+  "http://localhost:3002/update-something/123/john_doe?value1=abc&value2=xyz"
+Running 20s test @ http://localhost:3002/update-something/123/john_doe?value1=abc&value2=xyz
+5 connections with 2 pipelining factor
+1 workers
+
+\
+┌─────────┬──────┬──────┬───────┬──────┬─────────┬─────────┬───────┐
+│ Stat    │ 2.5% │ 50%  │ 97.5% │ 99%  │ Avg     │ Stdev   │ Max   │
+├─────────┼──────┼──────┼───────┼──────┼─────────┼─────────┼───────┤
+│ Latency │ 1 ms │ 1 ms │ 1 ms  │ 1 ms │ 1.01 ms │ 0.14 ms │ 20 ms │
+└─────────┴──────┴──────┴───────┴──────┴─────────┴─────────┴───────┘
+┌───────────┬────────┬────────┬────────┬────────┬─────────┬─────────┬────────┐
+│ Stat      │ 1%     │ 2.5%   │ 50%    │ 97.5%  │ Avg     │ Stdev   │ Min    │
+├───────────┼────────┼────────┼────────┼────────┼─────────┼─────────┼────────┤
+│ Req/Sec   │ 8,047  │ 8,047  │ 8,647  │ 8,671  │ 8,570.1 │ 148.37  │ 8,044  │
+├───────────┼────────┼────────┼────────┼────────┼─────────┼─────────┼────────┤
+│ Bytes/Sec │ 269 MB │ 269 MB │ 289 MB │ 290 MB │ 286 MB  │ 4.93 MB │ 269 MB │
+└───────────┴────────┴────────┴────────┴────────┴─────────┴─────────┴────────┘
+
+Req/Bytes counts sampled once per second.
+# of samples: 20
+
+171k requests in 20.01s, 5.73 GB read
+
+
+
+
+
+//this is used to create instances in cluster mode 
+//here i have created the 12(max) instances and then running the same api on these cluster.
+npx pm2 start ecosystem.config.cjs
+
+
+
+
+autocannon -m PATCH --connections 5 --duration 20 --pipelining 2 --workers 1 -H "Content-Type: application/json" -b '{"foo1":"test","foo2":"test","foo3":"test","foo4":"test","foo5":"test","foo6":"test","foo7":"test","foo8":"test","foo9":"test","foo10":"test"}' "http://localhost:3002/update-something/123/john_doe?value1=abc&value2=xyz"
+Running 20s test @ http://localhost:3002/update-something/123/john_doe?value1=abc&value2=xyz
+5 connections with 2 pipelining factor
+1 workers
+
+/
+┌─────────┬──────┬──────┬───────┬──────┬─────────┬────────┬───────┐
+│ Stat    │ 2.5% │ 50%  │ 97.5% │ 99%  │ Avg     │ Stdev  │ Max   │
+├─────────┼──────┼──────┼───────┼──────┼─────────┼────────┼───────┤
+│ Latency │ 0 ms │ 0 ms │ 0 ms  │ 0 ms │ 0.01 ms │ 0.1 ms │ 12 ms │
+└─────────┴──────┴──────┴───────┴──────┴─────────┴────────┴───────┘
+┌───────────┬────────┬────────┬─────────┬─────────┬──────────┬─────────┬────────┐
+│ Stat      │ 1%     │ 2.5%   │ 50%     │ 97.5%   │ Avg      │ Stdev   │ Min    │
+├───────────┼────────┼────────┼─────────┼─────────┼──────────┼─────────┼────────┤
+│ Req/Sec   │ 25,807 │ 25,807 │ 30,575  │ 31,615  │ 30,175.2 │ 1,609.1 │ 25,800 │
+├───────────┼────────┼────────┼─────────┼─────────┼──────────┼─────────┼────────┤
+│ Bytes/Sec │ 862 MB │ 862 MB │ 1.02 GB │ 1.06 GB │ 1.01 GB  │ 53.8 MB │ 862 MB │
+└───────────┴────────┴────────┴─────────┴─────────┴──────────┴─────────┴────────┘
+
+Req/Bytes counts sampled once per second.
+# of samples: 20
+
+603k requests in 20.01s, 20.2 GB read
+
+
+
+
+
+
+autocannon -m PATCH --connections 20 --duration 20 --pipelining 2 --workers 6 -H "Content-Type: application/json" -b '{"foo1":"test","foo2":"test","foo3":"test","foo4":"test","foo5":"test","foo6":"test","foo7":"test","foo8":"test","foo9":"test","foo10":"test"}' "http://localhost:3002/update-something/123/john_doe?value1=abc&value2=xyz"
+Running 20s test @ http://localhost:3002/update-something/123/john_doe?value1=abc&value2=xyz
+20 connections with 2 pipelining factor
+6 workers
+
+\
+┌─────────┬──────┬──────┬───────┬──────┬─────────┬─────────┬────────┐
+│ Stat    │ 2.5% │ 50%  │ 97.5% │ 99%  │ Avg     │ Stdev   │ Max    │
+├─────────┼──────┼──────┼───────┼──────┼─────────┼─────────┼────────┤
+│ Latency │ 0 ms │ 0 ms │ 1 ms  │ 2 ms │ 0.46 ms │ 1.01 ms │ 126 ms │
+└─────────┴──────┴──────┴───────┴──────┴─────────┴─────────┴────────┘
+┌───────────┬─────────┬─────────┬─────────┬─────────┬──────────┬──────────┬─────────┐
+│ Stat      │ 1%      │ 2.5%    │ 50%     │ 97.5%   │ Avg      │ Stdev    │ Min     │
+├───────────┼─────────┼─────────┼─────────┼─────────┼──────────┼──────────┼─────────┤
+│ Req/Sec   │ 31,135  │ 31,135  │ 40,671  │ 42,143  │ 39,888.4 │ 2,390.95 │ 31,124  │
+├───────────┼─────────┼─────────┼─────────┼─────────┼──────────┼──────────┼─────────┤
+│ Bytes/Sec │ 1.04 GB │ 1.04 GB │ 1.36 GB │ 1.41 GB │ 1.33 GB  │ 79.9 MB  │ 1.04 GB │
+└───────────┴─────────┴─────────┴─────────┴─────────┴──────────┴──────────┴─────────┘
+
+Req/Bytes counts sampled once per second.
+# of samples: 120
+
+798k requests in 20.01s, 26.6 GB read
