@@ -1,0 +1,298 @@
+1️⃣ How would you design a GenAI application serving 10,000+ concurrent users?
+2️⃣ How would you design a GenAI platform supporting multiple LLM providers and models?
+3️⃣ How would you design model routing based on latency, quality, and cost?
+4️⃣ How would you design a fallback architecture when the primary LLM provider becomes unavailable?
+5️⃣ How would you design a GenAI system for real-time and batch workloads simultaneously?
+6️⃣ How would you design data ingestion and processing for an enterprise GenAI platform?
+7️⃣ How would you design a system that supports multiple tenants with strict data isolation?
+8️⃣ How would you design versioning and rollback for prompts, models, agents, and workflows?
+9️⃣ How would you design a GenAI system to support both structured and unstructured enterprise data?
+🔟 How would you identify and eliminate bottlenecks when scaling a GenAI application from hundreds to millions of requests?
+The difference between a GenAI POC and a production system is rarely just the model.
+It's the architecture around the model.
+
+
+1. RAG Architecture
+How would you design a production-grade RAG system for an enterprise handling millions of documents? What would your architecture look like?
+
+2. RAG Debugging
+Your retriever is returning relevant documents, but the LLM still produces incorrect answers. Where would you start debugging?
+
+3. RAG Evaluation
+How would you evaluate retrieval quality, answer correctness, relevance, and hallucination in a RAG system?
+
+4. Agentic AI
+What is the difference between an AI agent and a deterministic workflow? When would you choose one over the other?
+
+5. Agent Reliability
+How would you prevent an AI agent from getting stuck in loops or making unnecessary tool calls?
+
+6. LLM Cost Optimization
+Your production GenAI application's LLM cost suddenly increases by 3×. How would you identify the cause and bring costs down?
+
+7. RAG vs Fine-Tuning
+When would you choose RAG, fine-tuning, or a combination of both for an enterprise use case?
+
+8. LLM Guardrails
+How would you protect a GenAI application against prompt injection, sensitive-data leakage, and unsafe outputs?
+
+9. Production LLMOps
+Which metrics would you monitor in production? How would you define SLOs for latency, availability, cost, and response quality?
+
+10. Production Debugging / FDE Scenario
+Your GenAI application works perfectly in development but fails in a customer's production environment. How would you investigate the issue end to end?
+
+
+
+Core Concepts :
+- What's the difference between a chatbot and an agent
+- What's the difference between a workflow and an agent
+- How does function calling actually work under the hood
+- What decides when an agent stops and returns a final answer instead of calling another tool
+
+Planning and Reasoning: 
+- What's the difference between a single-step agent and a multi-step planning agent
+- How does an agent break a complex task into smaller subtasks
+- What's the ReAct pattern, and why interleave reasoning with actions instead of planning everything upfront
+- How do you handle a task where the plan needs to change mid-execution based on a tool's result
+
+Tool Use and Reliability :
+- How do you handle a tool call that fails or returns malformed output
+- How do you validate structured output from a model before acting on it
+- How do you prevent an agent from getting stuck in an infinite tool-calling loop
+- How do you design retry logic that doesn't cause duplicate side effects, like sending an email twice
+
+Memory :
+- What's the difference between short-term and long-term memory in an agent
+- How do you decide what to store in memory versus what to discard
+- How do you prevent memory from growing unbounded across a long session
+- When would you summarize past context instead of storing it in full
+
+Multi-Agent Systems :
+- When is a multi-agent system actually justified over a single well-designed agent
+- What's the planner-executor pattern, and when do you need it
+- How do multiple agents communicate and hand off work to each other
+- How do you prevent multiple agents from producing conflicting or redundant results
+
+Cost and Production :
+- How do you control cost when an agent can call tools repeatedly
+- How do you set limits so an agent doesn't run away with token spend
+- How would you monitor an agent in production to catch failures before users do
+- What happens to your agent's cost and latency at 10x current usage
+
+Safety :
+- How do you prevent an agent from taking a destructive or irreversible action by mistake
+- How do you handle untrusted content an agent encounters through a tool result
+- Would you let an agent execute code automatically, or require a human approval step, and when
+
+
+
+1. Explain the bias-variance tradeoff and how you'd diagnose which one is hurting a model.
+2. How do you handle class imbalance in a classification problem?
+3. Walk through how gradient descent works, and explain the difference between SGD, mini-batch, and batch gradient descent.
+4. What's the difference between L1 and L2 regularization, and when would you choose one over the other?
+5. Explain backpropagation and why vanishing/exploding gradients happen in deep networks.
+6. What's the intuition behind attention mechanisms, and why did they replace RNNs/LSTMs for sequence tasks?
+7. How does batch normalization help training, and what's the difference between batch norm and layer norm?
+8. Compare CNNs, RNNs, and Transformers, when would you pick one architecture over another?
+9. How does the transformer architecture work end-to-end (tokenization → embeddings → attention → output)?
+10. Explain how RAG (Retrieval-Augmented Generation) works and when you'd use it over fine-tuning.
+11. What's the difference between fine-tuning, LoRA/PEFT, and prompt engineering and how do you decide which to use?
+12. How do you evaluate the output quality of an LLM application (e.g., hallucination rate, relevance, faithfulness)? 
+13. Design a scalable ML inference pipeline that needs to serve predictions with low latency at high throughput.
+14. How would you detect and handle model/data drift in a production ML system?
+15. Walk through how you'd design a vector search + embedding pipeline for a semantic search or recommendation feature.
+
+
+
+1. "Your RAG system is right 80% of the time. How do you find the other 20%?" I want to hear about Eval sets, Error Taxonomies and Retrieval Traces. Not "we'd add a Re-ranker."
+
+2. "How do you know your last prompt change made things better?" Anyone who says they tested it manually has never shipped something that regressed quietly.
+
+3. "Tell me about a time the model was confidently wrong in production." Everyone who has shipped has this story. Not having one tells me something too.
+
+4. "What's in your latency budget?" Retrieval, Re-ranking, Generation, Guardrails. I want numbers, not vibes.
+
+5. "When would you not use an LLM?" The good answers come fast. Classification with 10k labelled examples and a tight latency SLA is a fine-tuned encoder, not a chat model.
+
+
+
+
+RAG AI Engineer interview topics must to study:
+
+1) Chunking: Interviewer will give you a scenario and will ask you which type of chunking strategy you will opt for. For unstructed data it can be paragraph chunking, sentence chunking, recursive based chunking etc. And for Structured data it can be Entity based chunking. And for a PDF which contains Images, tables and text, it could be Document Layout aware based chunking.
+
+2) Retrieval technics: Sementic vs Keyword vs Hybrid, which one to opt for, when and why. How you gonna debug retrievar, how you gonna measure it's accuracy? 
+
+3) Retriever metrices: Precision, recall, MRR, hitrate.
+
+4) Embeddings: How embedding models work. Their dimensions, which dimension to opt for and it's tradeoffs.
+
+5) LLM: How you gonna measure the accuracy of the LLM and what are those metrices. Safety Gaurdrails. Ways to decrease cost and latency.
+
+6) Hallucinations: How you gonna reduce hallucination? How you gonna make sure user don't get made up fake answers in return to their query. From where you gonna start debugging? 
+
+7) Prompts: How you gonna apply Gaurdrails. How can you reduce the cost here, that is Prompt catching. Types of Prompt Strategies.
+
+8) Cache: How you can reduce the cost of similar query with cache. Types of cache and which one would work in a given scenario.
+
+9) User feedback: Given user feedback and how you gonna improve the system? 
+
+10) AI Agents: Ways to integrate AI Agents and their tools in the RAG system and will it improve the system or not and why and how?
+
+
+
+
+The interviewer was top-notch and had very deep technical knowledge. The discussion went much beyond definitions and basic GenAI concepts. What stood out to me was how every answer was followed by questions like:
+👉 𝗪𝗵𝘆 𝗱𝗶𝗱 𝘆𝗼𝘂 𝗰𝗵𝗼𝗼𝘀𝗲 𝘁𝗵𝗶𝘀 𝗮𝗽𝗽𝗿𝗼𝗮𝗰𝗵?
+👉 𝗛𝗼𝘄 𝘄𝗼𝘂𝗹𝗱 𝘆𝗼𝘂 𝗶𝗺𝗽𝗹𝗲𝗺𝗲𝗻𝘁 𝗶𝘁 𝗶𝗻 𝗽𝗿𝗼𝗱𝘂𝗰𝘁𝗶𝗼𝗻?
+👉 𝗪𝗵𝗮𝘁 𝗵𝗮𝗽𝗽𝗲𝗻𝘀 𝗶𝗳 𝗶𝘁 𝗳𝗮𝗶𝗹𝘀?
+👉 𝗛𝗼𝘄 𝘄𝗼𝘂𝗹𝗱 𝘆𝗼𝘂 𝗶𝗺𝗽𝗿𝗼𝘃𝗲 𝗮𝗰𝗰𝘂𝗿𝗮𝗰𝘆, 𝗹𝗮𝘁𝗲𝗻𝗰𝘆 𝗼𝗿 𝘀𝗰𝗮𝗹𝗮𝗯𝗶𝗹𝗶𝘁𝘆?
+The interview covered a broad range of areas — Machine Learning fundamentals, LLMs, RAG, embeddings, semantic search, Agentic AI, LangChain/LangGraph, tool calling and production-level AI systems.
+Knowing GenAI concepts is not enough for a 3+ years role.
+You should be able to connect:
+𝗖𝗼𝗻𝗰𝗲𝗽𝘁 → 𝗜𝗺𝗽𝗹𝗲𝗺𝗲𝗻𝘁𝗮𝘁𝗶𝗼𝗻 → 𝗔𝗿𝗰𝗵𝗶𝘁𝗲𝗰𝘁𝘂𝗿𝗲 → 𝗧𝗿𝗮𝗱𝗲-𝗼𝗳𝗳𝘀 → 𝗙𝗮𝗶𝗹𝘂𝗿𝗲 𝗛𝗮𝗻𝗱𝗹𝗶𝗻𝗴 → 𝗣𝗿𝗼𝗱𝘂𝗰𝘁𝗶𝗼𝗻
+
+
+
+
+
+
+𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰𝐞𝐫: "𝐇𝐨𝐰 𝐰𝐨𝐮𝐥𝐝 𝐲𝐨𝐮 𝐫𝐞𝐭𝐫𝐢𝐞𝐯𝐞 𝐭𝐡𝐞 𝐫𝐢𝐠𝐡𝐭 𝐚𝐧𝐬𝐰𝐞𝐫 𝐟𝐫𝐨𝐦 𝐚 200-𝐩𝐚𝐠𝐞 𝐏𝐃𝐅 𝐟𝐮𝐥𝐥 𝐨𝐟 𝐭𝐚𝐛𝐥𝐞𝐬, 𝐜𝐡𝐚𝐫𝐭𝐬, 𝐚𝐧𝐝 𝐬𝐜𝐚𝐧𝐧𝐞𝐝 𝐢𝐦𝐚𝐠𝐞𝐬 — 𝐰𝐢𝐭𝐡𝐨𝐮𝐭 𝐫𝐮𝐧𝐧𝐢𝐧𝐠 𝐎𝐂𝐑 𝐨𝐧 𝐢𝐭?"
+ 
+Six months ago, most of us wouldn't have had a great answer. Today, there's a model built exactly for this: ColPali.
+ 
+𝗤: 𝗪𝗵𝗮𝘁 𝗶𝘀 𝗖𝗼𝗹𝗣𝗮𝗹𝗶? ColPali (Contextualized Late Interaction over PaliGemma) is a vision-language retrieval model that embeds an entire document page — text, tables, charts, layout, everything — directly as an image. No text extraction. No chunking. No layout parser. It indexes the page the way a human would actually look at it.
+ 
+𝗤: 𝗛𝗼𝘄 𝗶𝘀 𝘁𝗵𝗶𝘀 𝗱𝗶𝗳𝗳𝗲𝗿𝗲𝗻𝘁 𝗳𝗿𝗼𝗺 𝘁𝗿𝗮𝗱𝗶𝘁𝗶𝗼𝗻𝗮𝗹 𝗢𝗖𝗥? Traditional OCR (covered in my last post) is a multi-stage pipeline: pre-process → segment → extract features → classify characters → post-process — then hand the extracted text to a separate retrieval system. Every one of those stages is a place where a table structure, a chart, or a stamp can get lost or garbled.
+ 
+ColPali skips all of it. A single vision-language model encodes the page into patch-level embeddings, and a "late interaction" mechanism (borrowed from ColBERT) matches each query word against the most relevant patches of the page directly — no intermediate text representation at all.
+ 
+𝗤: 𝗪𝗵𝗮𝘁 𝗮𝗿𝗲 𝘁𝗵𝗲 𝗮𝗱𝘃𝗮𝗻𝘁𝗮𝗴𝗲𝘀? → Understands tables, charts, and figures natively — not just running text → No brittle OCR/parsing pipeline to maintain → Much faster to index than OCR + layout analysis + chunking → Retrieval is interpretable — you can visualize exactly which patch of the page matched the query
+ 
+𝗤: 𝗪𝗵𝗲𝗿𝗲 𝗰𝗮𝗻 𝘄𝗲 𝘂𝘀𝗲 𝗶𝘁? → RAG over visually complex PDFs (financial reports, scientific papers, legal contracts) → Enterprise search across scanned/mixed-format document archives → Multilingual document retrieval without language-specific OCR tuning → Any pipeline where "OCR then embed the text" keeps losing visual context
+ 
+And ColPali isn't alone — it's spawned a whole family: ColQwen2/2.5 (stronger Qwen-VL backbone), ColQwen3 and ColQwen-Omni (text + visual in one model), ColSmol and ColModernVBERT (lightweight, efficient versions for production), among others.
+
+
+
+
+
+RAG / Retrieval
+
+• What are dense and sparse retrieval algorithms?
+• How do you extract text from scanned PDFs, images, and other document formats using multimodal models?
+• How is the BM25 score calculated?
+• BM25 returns n chunks and semantic search returns n chunks. How would you combine these results?
+• What is Reciprocal Rank Fusion (RRF)?
+• When would you use asynchronous programming, and when would you not use it?
+
+FastAPI / Backend
+
+• What are the benefits of FastAPI?
+• How do you create a database connection string?
+• How do you handle database connections for multiple users?
+• What is SQLAlchemy's connection pool?
+
+LLM / RAG / Agents
+
+• An LLM can generate different answers for the same prompt at different times. How would you make the output deterministic and consistent?
+• What are the different types of memory management in RAG?
+• What are the best practices for memory management in RAG?
+• How do you handle a long conversation history?
+• If you use an LLM to summarize long conversation history, wouldn't the summarization itself increase the LLM cost?
+• If an AI agent gives a wrong answer, how would you identify and correct it?
+
+
+
+
+
+
+go through these practical questions:
+🔹 RAG & Retrieval
+• Where does most RAG latency come from, and how do you reduce it?
+• When can keyword search outperform hybrid search?
+• When should you add a reranker?
+• How much chunk overlap is enough?
+• How do you test “lost in the middle”?
+• How does RAG Fusion affect latency?
+🔹 Advanced RAG
+• How would you design a cost-efficient CRAG grader?
+• Self-RAG vs CRAG — what are the production cost implications?
+• How would you implement Contextual Retrieval for 10M documents?
+• GraphRAG vs standard RAG — when would you use each?
+• How do you decide when a multi-hop RAG process should stop?
+• How would you A/B test HyDE?
+🔹 Agentic & Production RAG
+• What iteration limits would you use for Agentic RAG?
+• How would you handle a wrong tool selection?
+• How would you monitor hallucination rate automatically?
+• How would you monitor P50/P95/P99 latency?
+• How would you handle changed document permissions?
+• How would you safely handle failed re-indexing?
+• How would you design ingestion for 50M documents?
+🔹 Evaluation & Debugging
+• Faithfulness improves but answer relevancy drops — why?
+• Faithfulness is 0.95 but users still report wrong answers — what could be wrong?
+• How do you detect LLM-judge verbosity bias?
+• How do you detect embedding model version mismatch?
+• How would you evaluate Multimodal RAG beyond RAGAS?
+
+
+
+
+
+- How I developed an LLM inference microservice.
+- Inference optimization techniques
+- KV Cache — how it works and how it can be managed
+- Inference-serving parameters such as number of sequences and batched tokens
+- Setting up HPA (Horizontal Pod Autoscaler) and determining appropriate scaling parameters
+- Using an LLM-as-a-Judge — how to select representative examples for evaluation.
+- Concept of model distillation and quantization along with its advantages and disadvantages.
+- Why LLMs sometimes repeat the same sequence and approaches to mitigate repetition
+- Handling hallucinations in LLM applications
+- Managing document version changes in RAG systems:
+  - Section-level modifications
+  - Complete section removal
+  - Maintaining consistency of indexed content
+- Handling large tables in documents which spans across multiple pages.
+- Effective table parsing and ingestion strategies
+- Classical ML questions around imbalanced datasets
+- Micro F1 vs Macro F1
+
+
+
+𝟭/ 𝗛𝗼𝘄 𝗱𝗼𝗲𝘀 𝘁𝗵𝗲 𝗮𝗴𝗲𝗻𝘁 𝗱𝗶𝘀𝗰𝗼𝘃𝗲𝗿 𝗠𝗖𝗣 𝘀𝗲𝗿𝘃𝗲𝗿𝘀 𝗮𝗻𝗱 𝘁𝗵𝗲𝗶𝗿 𝗰𝗮𝗽𝗮𝗯𝗶𝗹𝗶𝘁𝗶𝗲𝘀?
+𝟮/ 𝗛𝗼𝘄 𝗱𝗼 𝘆𝗼𝘂 𝗵𝗮𝗻𝗱𝗹𝗲 𝗮𝘂𝘁𝗵𝗡/𝗮𝘂𝘁𝗵𝗭 𝗯𝗲𝘁𝘄𝗲𝗲𝗻 𝘁𝗵𝗲 𝗮𝗴𝗲𝗻𝘁 𝗮𝗻𝗱 𝗠𝗖𝗣 𝘀𝗲𝗿𝘃𝗲𝗿𝘀?
+𝟯/ 𝗛𝗼𝘄 𝗱𝗼 𝘆𝗼𝘂 𝘀𝗰𝗼𝗽𝗲 𝗢𝗔𝘂𝘁𝗵 𝗽𝗲𝗿 𝗰𝗮𝗽𝗮𝗯𝗶𝗹𝗶𝘁𝘆, 𝗲𝘀𝗽𝗲𝗰𝗶𝗮𝗹𝗹𝘆 𝗳𝗼𝗿 𝘀𝗲𝗻𝘀𝗶𝘁𝗶𝘃𝗲 𝗮𝗰𝘁𝗶𝗼𝗻𝘀?
+
+
+
+"Your application uses a powerful LLM for every request, including simple classification and FAQ questions. Latency and cost are too high.
+How would you design intelligent model routing?"
+
+
+
+Interviewer: Your RAG system retrieves relevant passages, but it struggles with questions involving relationships between customers, products, contracts, and transactions spread across different documents. Would you introduce a knowledge graph, and if so, how would you combine graph retrieval with vector search?
+Question: How would you combine graph retrieval with vector search to answer relationship-heavy questions?
+
+
+
+
+- KV Cache vs. Memory Overhead: How does KV Cache function during LLM inference, and how do you prevent memory bloating and rate-limit bottlenecks in high-concurrency environments?
+
+- RAG Retrieval Quality: How do you evaluate chunking strategies (e.g., semantic vs. hierarchical) using Precision@K, Recall@K, and MRR metrics?
+
+- LLM-as-a-Judge: How do you implement automated evaluation guardrails to quantify hallucinations and task success rates in production workflows?
+
+- Stateful Agent Orchestration: How do you maintain and restore state in stateful agent frameworks (like LangGraph) when handling asynchronous multi-tool executions?
+
+- Infinite Loops & Failures: What concrete error-recovery patterns prevent autonomous agents from entering recursive or infinite reasoning loops?
+
+- Practical System Design: Can you architect a deterministic, fault-tolerant agent pipeline that executes document extraction and tool-calling with dynamic fallbacks?
+
+
+Interviewer: Our LLM performs poorly when answering questions about internal medical protocols. Would you fine-tune the model or build a RAG system?
+
+Question: How would you determine whether the problem is missing knowledge, poor retrieval, or the model's inability to follow domain-specific reasoning?
+
