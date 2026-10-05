@@ -156,6 +156,52 @@ You should be able to connect:
 
 
 
+1. What is the difference between RAG, Fine-Tuning, and Prompt Engineering?
+
+2. How would you reduce hallucinations in an LLM application?
+
+3. Explain the end-to-end architecture of a GenAI application.
+
+4. What are AI Agents, and how do they differ from traditional workflows?
+
+5. How would you design a multi-agent system for enterprise automation?
+
+6. What evaluation metrics would you use for a GenAI application?
+
+7. How do vector databases work in RAG systems?
+
+8. What is prompt injection, and how would you prevent it?
+
+9. How would you optimize latency and cost in an LLM application?
+
+10. What is the role of embeddings in Retrieval-Augmented Generation (RAG)?
+
+11. When would you choose fine-tuning over RAG?
+
+12. How would you handle sensitive or confidential data in GenAI systems?
+
+13. What challenges arise when deploying LLMs to production?
+
+14. How would you evaluate whether an AI Agent is performing correctly?
+
+15. What are the key components of an Agentic AI architecture?
+
+16. How would you debug an LLM that suddenly starts producing poor responses?
+
+17. What strategies can improve retrieval quality in a RAG pipeline?
+
+18. How would you build a GenAI application that scales to millions of users?
+
+19. What are MCPs (Model Context Protocols), and why are they important?
+
+20. How do you see Agentic AI changing software development in the next 3–5 years?
+
+21. How would you design a self-correcting RAG system that detects when retrieved context is insufficient and performs another search?
+
+22. Your AI application has excellent offline evaluation scores but poor production performance. What could explain the gap?
+
+
+
 
 
 𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰𝐞𝐫: "𝐇𝐨𝐰 𝐰𝐨𝐮𝐥𝐝 𝐲𝐨𝐮 𝐫𝐞𝐭𝐫𝐢𝐞𝐯𝐞 𝐭𝐡𝐞 𝐫𝐢𝐠𝐡𝐭 𝐚𝐧𝐬𝐰𝐞𝐫 𝐟𝐫𝐨𝐦 𝐚 200-𝐩𝐚𝐠𝐞 𝐏𝐃𝐅 𝐟𝐮𝐥𝐥 𝐨𝐟 𝐭𝐚𝐛𝐥𝐞𝐬, 𝐜𝐡𝐚𝐫𝐭𝐬, 𝐚𝐧𝐝 𝐬𝐜𝐚𝐧𝐧𝐞𝐝 𝐢𝐦𝐚𝐠𝐞𝐬 — 𝐰𝐢𝐭𝐡𝐨𝐮𝐭 𝐫𝐮𝐧𝐧𝐢𝐧𝐠 𝐎𝐂𝐑 𝐨𝐧 𝐢𝐭?"
