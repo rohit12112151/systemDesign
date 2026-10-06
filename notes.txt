@@ -342,3 +342,17 @@ Interviewer: Our LLM performs poorly when answering questions about internal med
 
 Question: How would you determine whether the problem is missing knowledge, poor retrieval, or the model's inability to follow domain-specific reasoning?
 
+
+
+
+
+1️⃣ Your retriever returns irrelevant documents.
+How would you determine whether the embedding model is actually the problem?
+2️⃣ You replace your embedding model and Recall@10 improves from 72% → 81%.
+How would you prove the embedding change caused the improvement?
+3️⃣ Two embedding models perform similarly on your test set.
+How would you decide which one to use in production?
+4️⃣ Your embedding model works well for general English documents but poorly for legal documents.
+Would you immediately fine-tune it? Why?
+5️⃣ Your dataset grows from 1M → 100M chunks.
+What changes besides the embedding model?
