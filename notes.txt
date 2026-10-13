@@ -286,6 +286,19 @@ go through these practical questions:
 
 
 
+How do you process document metadata such as images, charts, and graphs?
+1. How would you identify data drift in production, and how would you resolve it?
+2. You need to build a demand forecasting system for umbrellas. What features would you consider and which algorithm would you use, considering that umbrella demand is an intermittent demand problem?
+3. How can you compress the stored documents without losing retrieval/answer quality?
+4. How would you improve the P95 latency of a RAG system?
+   The interviewer was specifically looking for:
+   - Caching
+   - Model routing
+   - Selecting Top-K dynamically based on query complexity
+   - Horizontal and vertical scaling of individual components, followed by the same approach for the other components where required.
+
+Your enterprise RAG system uses vector search, but users complain that exact product names, employee IDs, and technical terms are often missed. How would you improve retrieval without replacing the existing vector search system?
+
 
 
 - How I developed an LLM inference microservice.
@@ -311,6 +324,8 @@ go through these practical questions:
 𝟭/ 𝗛𝗼𝘄 𝗱𝗼𝗲𝘀 𝘁𝗵𝗲 𝗮𝗴𝗲𝗻𝘁 𝗱𝗶𝘀𝗰𝗼𝘃𝗲𝗿 𝗠𝗖𝗣 𝘀𝗲𝗿𝘃𝗲𝗿𝘀 𝗮𝗻𝗱 𝘁𝗵𝗲𝗶𝗿 𝗰𝗮𝗽𝗮𝗯𝗶𝗹𝗶𝘁𝗶𝗲𝘀?
 𝟮/ 𝗛𝗼𝘄 𝗱𝗼 𝘆𝗼𝘂 𝗵𝗮𝗻𝗱𝗹𝗲 𝗮𝘂𝘁𝗵𝗡/𝗮𝘂𝘁𝗵𝗭 𝗯𝗲𝘁𝘄𝗲𝗲𝗻 𝘁𝗵𝗲 𝗮𝗴𝗲𝗻𝘁 𝗮𝗻𝗱 𝗠𝗖𝗣 𝘀𝗲𝗿𝘃𝗲𝗿𝘀?
 𝟯/ 𝗛𝗼𝘄 𝗱𝗼 𝘆𝗼𝘂 𝘀𝗰𝗼𝗽𝗲 𝗢𝗔𝘂𝘁𝗵 𝗽𝗲𝗿 𝗰𝗮𝗽𝗮𝗯𝗶𝗹𝗶𝘁𝘆, 𝗲𝘀𝗽𝗲𝗰𝗶𝗮𝗹𝗹𝘆 𝗳𝗼𝗿 𝘀𝗲𝗻𝘀𝗶𝘁𝗶𝘃𝗲 𝗮𝗰𝘁𝗶𝗼𝗻𝘀?
+
+How does RoPE (Rotary Positional Encoding) work?
 
 
 
@@ -356,3 +371,34 @@ How would you decide which one to use in production?
 Would you immediately fine-tune it? Why?
 5️⃣ Your dataset grows from 1M → 100M chunks.
 What changes besides the embedding model?
+
+
+
+
+𝗥𝗼𝘂𝗻𝗱 𝟭: 𝗧𝗲𝗰𝗵𝗻𝗶𝗰𝗮𝗹
+• Walk me through your RAG pipeline, end to end
+• How do you choose a vector database, and how do you chunk documents?
+• What breaks when your docs change?
+𝗥𝗼𝘂𝗻𝗱 𝟮: 𝗧𝗲𝗰𝗵𝗻𝗶𝗰𝗮𝗹 (𝗱𝗲𝗲𝗽𝗲𝗿)
+• How would you design an AI agent for a real workflow?
+• How does LangGraph handle state, loops and failures?
+• What changes when RAG goes from demo to production?
+𝗥𝗼𝘂𝗻𝗱 𝟯: 𝗗𝗲𝗺𝗼𝗻𝘀𝘁𝗿𝗮𝘁𝗶𝗼𝗻
+Show your process, live. Not just the output, but how you think, debug and decide.
+The pattern was clear:
+𝗕𝘂𝗶𝗹𝗱𝗶𝗻𝗴 𝗮 𝗱𝗲𝗺𝗼 ≠ 𝗯𝘂𝗶𝗹𝗱𝗶𝗻𝗴 𝗮 𝗽𝗿𝗼𝗱𝘂𝗰𝘁𝗶𝗼𝗻 𝗔𝗜 𝘀𝘆𝘀𝘁𝗲𝗺.
+𝗛𝗼𝘄 𝗜'𝗱 𝗽𝗿𝗲𝗽𝗮𝗿𝗲 𝗶𝗳 𝗜 𝗱𝗶𝗱 𝗶𝘁 𝗮𝗴𝗮𝗶𝗻:
+𝟭. 𝗘𝘃𝗮𝗹𝘂𝗮𝘁𝗲 𝗿𝗲𝘁𝗿𝗶𝗲𝘃𝗮𝗹 𝗮𝗻𝗱 𝗴𝗲𝗻𝗲𝗿𝗮𝘁𝗶𝗼𝗻 𝘀𝗲𝗽𝗮𝗿𝗮𝘁𝗲𝗹𝘆
+• Retrieval: Recall@k, Precision@k, MRR/nDCG, context relevance
+• Generation: faithfulness, answer relevance, correctness
+𝟮. 𝗕𝘂𝗶𝗹𝗱 𝗮 𝗴𝗼𝗹𝗱𝗲𝗻 𝘁𝗲𝘀𝘁 𝘀𝗲𝘁
+50–200 real questions with expected answers and sources. Rerun it on every change.
+𝟯. 𝗨𝘀𝗲 𝗟𝗟𝗠-𝗮𝘀-𝗷𝘂𝗱𝗴𝗲, 𝘄𝗶𝘁𝗵 𝗰𝗮𝗿𝗲
+Calibrate it and keep human spot checks. Know RAGAS, DeepEval, TruLens, LangSmith.
+𝟰. 𝗧𝗵𝗶𝗻𝗸 𝗽𝗿𝗼𝗱𝘂𝗰𝘁𝗶𝗼𝗻
+Latency, cost per query, user feedback, "no answer" rate, drift.
+𝟱. 𝗞𝗻𝗼𝘄 𝘁𝗵𝗲 𝗳𝗮𝗶𝗹𝘂𝗿𝗲 𝗺𝗼𝗱𝗲𝘀
+Bad chunking, wrong top-k, stale index, queries that don't match doc wording.
+𝟲. 𝗣𝗿𝗮𝗰𝘁𝗶𝘀𝗲 𝘁𝗵𝗲 𝗱𝗲𝗺𝗼
+Explain your choices out loud while you build. They're hiring your thinking.
+I'll share more on production RAG this month. Follow along if you're preparing for GenAI or AI Engineer roles.
