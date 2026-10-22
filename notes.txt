@@ -402,3 +402,93 @@ Bad chunking, wrong top-k, stale index, queries that don't match doc wording.
 𝟲. 𝗣𝗿𝗮𝗰𝘁𝗶𝘀𝗲 𝘁𝗵𝗲 𝗱𝗲𝗺𝗼
 Explain your choices out loud while you build. They're hiring your thinking.
 I'll share more on production RAG this month. Follow along if you're preparing for GenAI or AI Engineer roles.
+
+
+
+
+
+
+Round 1: Technical Interview
+1. What is Retrieval-Augmented Generation (RAG), and how does it improve LLM responses?
+2. Explain the GenAI project you are currently working on.
+3. How would you process PDFs containing both text and images in a RAG pipeline?
+4. What techniques do you use for prompt engineering?
+5. What is an imbalanced dataset, and how would you handle it?
+6. Explain precision, recall, and F1-score.
+7. What are AI agents, and how do they differ from traditional LLM applications?
+8. Write a Python program to print even and odd numbers from a list.
+9. Write a Python program to check whether a number is prime.
+
+Round 2: Technical Interview
+1. What are the different chunking strategies used in RAG, and how would you choose one?
+2. How would you extract and process information from unstructured PDF documents?
+3. How would you improve retrieval accuracy in a RAG application?
+4. What is Slowly Changing Dimension (SCD) in data engineering?
+5. How would you identify and remove duplicate records from a database table?
+6. Explain the key components of a production-ready GenAI application.
+7. What are LangChain and LangGraph, and when would you use them?
+
+
+
+𝐑𝐨𝐮𝐧𝐝 1: 𝐋𝐋𝐃 + 𝐏𝐫𝐨𝐣𝐞𝐜𝐭 𝐃𝐞𝐞𝐩 𝐃𝐢𝐯𝐞
+
+- Deep discussion on previous projects and design trade-offs
+- Design a Splitwise-like application
+- Pseudocode was enough; no need to run the code
+
+𝐑𝐨𝐮𝐧𝐝 2: 𝐇𝐢𝐠𝐡-𝐋𝐞𝐯𝐞𝐥 𝐃𝐞𝐬𝐢𝐠𝐧
+
+- Design a job orchestrator
+- Submit jobs to different clusters
+- Track job status and retry failed jobs
+
+
+
+
+1. Design a Payment Processing System
+2. Design Stripe Connect for Marketplace Payments
+3. Design a Payment Gateway
+4. Design a Subscription Billing System
+5. Design a Fraud Detection System for Payments
+6. Design an Idempotent Payment API
+7. Design a Payment Retry and Recovery System
+8. Design a Double-Entry Ledger System
+9. Design a Real-Time Payment Reconciliation System
+10. Design a Refund Processing System
+11. Design a Webhook Delivery System
+12. Design a Rate Limiter for Payment APIs
+13. Design a Distributed Transaction System for Payments
+14. Design a Global Payment Routing System
+15. Design a Credit Card Tokenization Service
+16. Design a Dispute and Chargeback Management System
+17. Design a Financial Reporting and Analytics Platform
+18. Design a Multi-Currency Payment Processing System
+19. Design a Real-Time Risk Scoring Engine
+20. Design a High-Availability Payment Infrastructure
+
+
+
+
+
+
+1. How did you develop an LLM inference microservice?
+2. What inference optimisation techniques did you use, and why?
+3. How does KV cache work in LLM inference, and how do you manage it?
+4. Which inference-serving parameters did you consider, particularly sequences and batched tokens?
+5. How did you configure Horizontal Pod Autoscaling (HPA) for an LLM service?
+6. How did you use an LLM-as-a-Judge, and how did you select representative evaluation examples?
+7. What are model distillation and quantization? What are their advantages and disadvantages?
+8. Why do LLMs sometimes repeat the same sequence, and how can you mitigate this?
+9. How do you handle hallucinations in LLM applications?
+10. How do you manage document version changes in a RAG system?
+11. How do you handle large tables that span multiple pages?
+12. What are effective strategies for parsing and ingesting tables into a RAG system?
+13. How do you handle imbalanced datasets in classical machine learning?
+14. What is the difference between Micro F1 and Macro F1?
+
+𝗥𝗼𝘂𝗻𝗱 𝟮: 𝗧𝗲𝗰𝗵𝗻𝗶𝗰𝗮𝗹 + 𝗣𝗿𝗼𝗷𝗲𝗰𝘁
+
+15. Can you walk through your project in detail and explain its architecture?
+16. Which latency metrics did you measure in your project, and why?
+17. Which frameworks did you use for LLM deployment, and why did you choose them?
+18. Can you write a working summarizer agent using LangGraph?
