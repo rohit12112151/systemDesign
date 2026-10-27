@@ -1,3 +1,28 @@
+swiggy :
+   shortlisted for golang+AI developer
+   gave OA ->solved 1 complete question in go and 1 code correction and one question was showing error
+   response pending 
+
+quentill:
+   resume send to chris ogboke and shortlisted for interview
+   hiring for GenAI
+   in intyerview they asked many question ,i explained theoritically so they said we were seeing for some technical response ,in which i were lacking
+   response pending 
+
+firstSource:
+   resume shortlisted from noukri
+   they said i will be having 3round of intervie in which one in bot interview and 2 is inPerson interview
+   in bot interview itself i was elliminated
+
+
+
+IBM:
+   resume shortlisted for OA 
+
+
+
+
+
 1️⃣ How would you design a GenAI application serving 10,000+ concurrent users?
 2️⃣ How would you design a GenAI platform supporting multiple LLM providers and models?
 3️⃣ How would you design model routing based on latency, quality, and cost?
