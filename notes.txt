@@ -10,7 +10,7 @@ quentill:
    response pending 
 
 firstSource:
-   resume shortlisted from noukri
+   resume shortlisted from naukri
    they said i will be having 3round of intervie in which one in bot interview and 2 is inPerson interview
    in bot interview itself i was elliminated
 
@@ -517,3 +517,50 @@ Round 2: Technical Interview
 16. Which latency metrics did you measure in your project, and why?
 17. Which frameworks did you use for LLM deployment, and why did you choose them?
 18. Can you write a working summarizer agent using LangGraph?
+
+
+
+
+1. LLM Latency A customer's LLM app has become too slow. What five changes would you consider to bring latency down, and what do they cost?
+
+2. Prompting vs. RAG vs. Fine-Tuning How do you decide when a customer wants the LLM to "know" their internal data?
+
+3. PII Protection A customer won't allow any PII to be sent to an external LLM API. What architectures do you propose?
+
+4. Hallucinations Why do LLMs hallucinate, and what are three techniques to reduce it, with their costs?
+
+5. KV Caching & Prefix Caching Explain KV caching and prefix caching: what is cached, and why does it cut latency?
+
+6. LLM Cost Optimization A customer's LLM spend is unsustainable. How do you get a 10x cost reduction while preserving quality?
+
+7. Evaluation & Regression Testing How do you design an eval suite that catches silent quality regressions after a model upgrade or deprecation?
+
+8. Multi-Model Routing How do you design a multi-model router or cascade that cuts cost while holding a quality floor?
+
+9. Self-Hosting vs. API Providers Self-hosting an open-weight model vs. paying API providers: how do you advise a customer?
+
+10. Scaling RAG A RAG proof of concept works on 50 documents. How do you evolve it to 5M documents in production?
+
+
+
+
+1. Design a Project Management Tool Like Jira
+2. Design a Real-Time Collaboration Tool.
+3. Design a Scalable Notification System
+4. Design a Search System for Knowledge Base Articles
+5. Design an API Gateway for Atlassian Services
+6. Design a Version Control System for Documentation
+7. Design a Real-Time Analytics Platform
+8. Design a Scalable User Authentication and Authorization System
+9. Design a Workflow Automation System
+10. Design a Logging and Monitoring System
+11. Design a Rate Limiter
+12. Design a parking
+13. Database Design
+14. Design Snake Game
+15. Design a Ticketing System like Jira
+16. Design a URL Shortening Service
+17. Design a Notification System
+18. Design a Distributed Messaging System
+19. Design a Scalable Chat Application
+20. Design a Job Scheduler

@@ -1,0 +1,2660 @@
+CS Questions — 200 Varied Questions
+Source: gate_questions.cs
+Selection: varied subjects and subtopics; repeated generator templates and near-duplicate wording excluded.
+Includes CS technical subjects and Engineering Mathematics.
+MCQ: one correct option | MSQ: multiple correct options | NAT: numerical answer
+
+Subject coverage:
+C Programming: 18
+Data Structures: 18
+Algorithms: 19
+Theory of Computation: 18
+Compiler Design: 18
+Operating Systems: 18
+Database Management System: 19
+Computer Networks: 18
+Computer Organization and Architecture: 18
+Digital Logic: 18
+Engineering Mathematics: 18
+
+--------------------------------------------------------------------------------
+
+Question 1
+Subject: C Programming | Topic: Arrays and Pointers | Type: MSQ
+Subtopic: Pointer Bounds
+
+For int a[5], which pointer operations are permitted by ISO C11?
+
+A. Subtract (a+4)-(a+1).
+B. Form a-1, a pointer before the array.
+C. Form a+5, the one-past pointer.
+D. Dereference a+5.
+
+--------------------------------------------------------------------------------
+
+Question 2
+Subject: C Programming | Topic: Arrays and Pointers | Type: MCQ
+Subtopic: Pointers to Arrays
+
+Under ISO C11, what integer does this complete program print?
+
+#include <stdio.h>
+#include <string.h>
+
+int main(void) {
+    int a[5][4]={{72,26,24,47},{32,35,30,65},{71,45,87,89},{11,73,41,44},{32,76,88,86}};
+    int (*p)[4]=a;
+    printf("%d",*(*(p+2)+0));
+    return 0;
+}
+
+A. 72
+B. 71
+C. 70
+D. 73
+
+--------------------------------------------------------------------------------
+
+Question 3
+Subject: C Programming | Topic: Control Flow | Type: NAT
+Subtopic: Break and Continue
+
+Under ISO C11, what integer does this complete program print?
+
+#include <stdio.h>
+#include <string.h>
+
+int main(void) {
+    int s=0;
+    for(int i=1;i<=30;++i) {
+        if(i==24) break;
+        if(i%4==0) continue;
+        s+=i;
+    }
+    printf("%d",s);
+    return 0;
+}
+
+--------------------------------------------------------------------------------
+
+Question 4
+Subject: C Programming | Topic: Control Flow | Type: NAT
+Subtopic: Switch Fall-through
+
+Under ISO C11, what integer does this complete program print?
+
+#include <stdio.h>
+#include <string.h>
+
+int main(void) {
+    int x=0;
+    switch(3) {
+    case 0: x+=5;
+    case 1: x+=6; break;
+    case 2: x+=2; break;
+    default: x+=4;
+    }
+    printf("%d",x);
+    return 0;
+}
+
+--------------------------------------------------------------------------------
+
+Question 5
+Subject: C Programming | Topic: Functions | Type: NAT
+Subtopic: Value and Pointer Parameters
+
+Under ISO C11, what integer does this complete program print?
+
+#include <stdio.h>
+#include <string.h>
+void change(int x, int *y) { x += 6; *y += x-15; }
+
+int main(void) {
+    int a=15, b=18;
+    change(a,&b);
+    printf("%d",a+b);
+    return 0;
+}
+
+--------------------------------------------------------------------------------
+
+Question 6
+Subject: C Programming | Topic: Input and Output | Type: NAT
+Subtopic: File Streams and rewind
+
+Assume all allocation and stream operations succeed. Under ISO C11, what integer does this complete program print?
+
+#include <stdio.h>
+#include <string.h>
+
+int main(void) {
+FILE *fp=tmpfile();
+if(fp==NULL) return 1;
+fprintf(fp,"%d %d",22,74);
+rewind(fp);
+int x=0,y=0;
+if(fscanf(fp,"%d %d",&x,&y)!=2) { fclose(fp); return 1; }
+fclose(fp);
+printf("%d",x+3*y);
+    return 0;
+}
+
+--------------------------------------------------------------------------------
+
+Question 7
+Subject: C Programming | Topic: Memory Management | Type: MSQ
+Subtopic: Allocation Rules
+
+Assume p is NULL or was returned by malloc and has not been freed. Which statements are guaranteed?
+
+A. A freed block may be read until the next malloc call.
+B. A successfully allocated block can be released with free.
+C. free(NULL) is permitted.
+D. free(p) always sets the caller's p to NULL.
+
+--------------------------------------------------------------------------------
+
+Question 8
+Subject: C Programming | Topic: Memory Management | Type: MCQ
+Subtopic: Dynamic Allocation
+
+After p=malloc(n*sizeof *p) succeeds, what is guaranteed about the allocated int objects before any values are stored?
+
+A. Every int is initialized to one
+B. Every int is initialized to zero
+C. Every int equals n
+D. Their values are indeterminate
+
+--------------------------------------------------------------------------------
+
+Question 9
+Subject: C Programming | Topic: Operators | Type: NAT
+Subtopic: Short-circuit Evaluation
+
+Under ISO C11, what integer does this complete program print?
+
+#include <stdio.h>
+#include <string.h>
+
+int main(void) {
+    int a=0, x=10, y=5;
+    if (a && ++x) y += 1;
+    (void)y;
+    printf("%d",x);
+    return 0;
+}
+
+--------------------------------------------------------------------------------
+
+Question 10
+Subject: C Programming | Topic: Operators | Type: MSQ
+Subtopic: sizeof
+
+Under ISO C11, which statements hold for ordinary non-VLA object types?
+
+A. sizeof is reported in units of char.
+B. sizeof(int) is required to equal 4.
+C. sizeof a pointer must equal sizeof(int).
+D. sizeof(char) equals 1.
+
+--------------------------------------------------------------------------------
+
+Question 11
+Subject: C Programming | Topic: Preprocessor | Type: MCQ
+Subtopic: Conditional Compilation Evaluation
+
+Under ISO C11, what integer does this complete program print?
+
+#include <stdio.h>
+#include <string.h>
+#define LIMIT 5
+int main(void) {
+int x;
+#if LIMIT >= 16
+x=LIMIT*3;
+#else
+x=LIMIT+3;
+#endif
+printf("%d",x);
+    return 0;
+}
+
+A. 9
+B. 7
+C. 8
+D. 10
+
+--------------------------------------------------------------------------------
+
+Question 12
+Subject: C Programming | Topic: Preprocessor | Type: MCQ
+Subtopic: Macro Expansion
+
+Under ISO C11, what integer does this complete program print?
+
+#include <stdio.h>
+#include <string.h>
+#define SQUARE(x) x*x
+
+int main(void) {
+    printf("%d",SQUARE(8+5));
+    return 0;
+}
+
+A. 52
+B. 54
+C. 55
+D. 53
+
+--------------------------------------------------------------------------------
+
+Question 13
+Subject: C Programming | Topic: Qualifiers | Type: MCQ
+Subtopic: Const Pointers
+
+Given int * const p = &x;, which action is permitted when x is an ordinary writable int?
+
+A. Assigning NULL to p
+B. Assigning a new value to *p
+C. Incrementing p
+D. Assigning &y to p
+
+--------------------------------------------------------------------------------
+
+Question 14
+Subject: C Programming | Topic: Storage Classes | Type: MCQ
+Subtopic: Static Local Variables
+
+Under ISO C11, what integer does this complete program print?
+
+#include <stdio.h>
+#include <string.h>
+int f(void) { static int x=6; x += 4; return x; }
+
+int main(void) {
+    int s=0;
+    for (int i=0; i<3; ++i) s += f();
+    printf("%d",s);
+    return 0;
+}
+
+A. 41
+B. 42
+C. 43
+D. 44
+
+--------------------------------------------------------------------------------
+
+Question 15
+Subject: C Programming | Topic: Strings | Type: NAT
+Subtopic: Overlapping memmove
+
+Under ISO C11, what integer does this complete program print?
+
+#include <stdio.h>
+#include <string.h>
+
+int main(void) {
+char a[24]="abcdcfa";
+memmove(a+4,a,strlen(a)+1);
+printf("%d",(int)strlen(a));
+    return 0;
+}
+
+--------------------------------------------------------------------------------
+
+Question 16
+Subject: C Programming | Topic: Structures | Type: NAT
+Subtopic: Structure Assignment
+
+Under ISO C11, what integer does this complete program print?
+
+#include <stdio.h>
+#include <string.h>
+
+int main(void) {
+    struct pair {int x,y;} a={27,10};
+    struct pair b=a;
+    b.x+=8;
+    printf("%d",a.x+b.x+a.y);
+    return 0;
+}
+
+--------------------------------------------------------------------------------
+
+Question 17
+Subject: C Programming | Topic: Types and Expressions | Type: MCQ
+Subtopic: Enums and typedef
+
+Under ISO C11, what integer does this complete program print?
+
+#include <stdio.h>
+#include <string.h>
+
+int main(void) {
+enum code {A=7,B,C=A+7,D};
+typedef int number;
+number x=B+D;
+printf("%d",x);
+    return 0;
+}
+
+A. 23
+B. 24
+C. 22
+D. 25
+
+--------------------------------------------------------------------------------
+
+Question 18
+Subject: C Programming | Topic: Unions | Type: MCQ
+Subtopic: Shared Storage
+
+What is the defining storage property of a C union?
+
+A. All members have separate consecutive storage
+B. Its size must equal the sum of all member sizes
+C. Its members must all have the same type
+D. Its members share overlapping storage
+
+--------------------------------------------------------------------------------
+
+Question 19
+Subject: Data Structures | Topic: Arrays | Type: MCQ
+Subtopic: Column-major Addressing
+
+Array A[0..4][0..3] is stored column-major at base byte address 3560, with 4 bytes per element. Address of A[0][1] = ______.
+
+A. 3580
+B. 3582
+C. 3581
+D. 3579
+
+--------------------------------------------------------------------------------
+
+Question 20
+Subject: Data Structures | Topic: Arrays | Type: MCQ
+Subtopic: Row-major Addressing
+
+Array A[0..4][0..6] is stored in row-major order. Each element occupies 2 bytes and A[0][0] starts at byte address 1776. The address of A[4][0] is ______.
+
+A. 1832
+B. 1834
+C. 1833
+D. 1831
+
+--------------------------------------------------------------------------------
+
+Question 21
+Subject: Data Structures | Topic: Graphs | Type: MCQ
+Subtopic: Breadth-first Search
+
+An undirected graph has vertices 0..4 and edges [(0, 1), (1, 2), (2, 3), (3, 4), (1, 3), (1, 4)]. BFS starts at 0, marks vertices when enqueued, and scans neighbors in ascending numeric order. Its dequeue order is:
+
+A. [0, 4, 3, 2, 1]
+B. [4, 3, 2, 1, 0]
+C. [0, 1, 2, 3, 4]
+D. [1, 0, 2, 3, 4]
+
+--------------------------------------------------------------------------------
+
+Question 22
+Subject: Data Structures | Topic: Graphs | Type: NAT
+Subtopic: Connected Components
+
+An undirected graph has vertices 0..8 and edges [(5, 7), (0, 8), (2, 4), (0, 3), (0, 2), (5, 8)]. Including isolated vertices, how many connected components are present?
+
+--------------------------------------------------------------------------------
+
+Question 23
+Subject: Data Structures | Topic: Hashing | Type: NAT
+Subtopic: Double Hashing
+
+An empty table has prime size 13. Insert [62, 82, 35, 61, 79] with h1(k)=k mod 13, h2(k)=1+(k mod 12), and probe i at (h1+i*h2) mod 13, starting i=0. Count every inspected slot, including empty termination slots. Total insertion probes = ______.
+
+--------------------------------------------------------------------------------
+
+Question 24
+Subject: Data Structures | Topic: Hashing | Type: NAT
+Subtopic: Linear Probing
+
+An empty hash table has slots 0 through 10. Insert [18, 30, 13, 87] using h(k)=k mod 11 and linear probing with wraparound. Every inspected slot, including the final empty slot, counts as one probe. Total insertion probes = ______.
+
+--------------------------------------------------------------------------------
+
+Question 25
+Subject: Data Structures | Topic: Heaps | Type: MCQ
+Subtopic: Binary Heap Insertion
+
+Insert [78, 44, 28, 26, 74, 79, 51, 45] sequentially into an initially empty max-heap using append followed by sift-up. Count only swaps between a node and its parent. The total number of swaps is ______.
+
+A. 6
+B. 5
+C. 4
+D. 3
+
+--------------------------------------------------------------------------------
+
+Question 26
+Subject: Data Structures | Topic: Heaps | Type: MCQ
+Subtopic: Heap Construction
+
+Bottom-up construction of a binary heap from an arbitrary array of n keys takes worst-case time:
+
+A. Theta(n log n)
+B. Theta(log n)
+C. Theta(n)
+D. Theta(n squared)
+
+--------------------------------------------------------------------------------
+
+Question 27
+Subject: Data Structures | Topic: Heaps | Type: MCQ
+Subtopic: Heap Deletion
+
+A max-heap has level-order array [89, 83, 87, 79, 67, 17, 69, 36, 65, 48]. Remove its maximum, move the last item to the root, and repeatedly exchange with the larger child until order is restored. What is the resulting array?
+
+A. [87, 83, 79, 69, 67, 65, 48, 36, 17]
+B. [83, 87, 79, 67, 17, 69, 36, 65, 48]
+C. [87, 83, 69, 79, 67, 17, 48, 36, 65]
+D. [65, 36, 48, 17, 67, 79, 69, 83, 87]
+
+--------------------------------------------------------------------------------
+
+Question 28
+Subject: Data Structures | Topic: Linked Lists | Type: MCQ
+Subtopic: Doubly Linked Traversal
+
+A doubly linked list has forward contents [20, 16, 63, 23, 80, 11, 29, 89]. Delete the node with value 63, then insert 129 between its former two neighbors. What sequence is obtained by following prev from the tail to NULL?
+
+A. [20, 16, 129, 23, 80, 11, 29, 89]
+B. [89, 29, 11, 80, 23, 63, 16, 20]
+C. [20, 16, 63, 23, 80, 11, 29, 89]
+D. [89, 29, 11, 80, 23, 129, 16, 20]
+
+--------------------------------------------------------------------------------
+
+Question 29
+Subject: Data Structures | Topic: Linked Lists | Type: NAT
+Subtopic: Floyd Cycle Detection
+
+A linked structure has nodes 0..7; node i points to i+1 for i<7, and the last node points to 3. Floyd detection starts both pointers at node 0, then moves slow once and fast twice before comparing. How many iterations until their first meeting?
+
+--------------------------------------------------------------------------------
+
+Question 30
+Subject: Data Structures | Topic: Linked Lists | Type: MCQ
+Subtopic: List Operations
+
+A singly linked list initially contains [32, 34, 30, 37, 46, 78, 13]. Insert 135 immediately after the node with value 78, then delete the node with value 34. What is the final sequence?
+
+A. [32, 30, 37, 46, 78, 135, 13]
+B. [32, 34, 30, 37, 46, 78, 135, 13]
+C. [135, 32, 30, 37, 46, 78, 13]
+D. [13, 135, 78, 46, 37, 30, 32]
+
+--------------------------------------------------------------------------------
+
+Question 31
+Subject: Data Structures | Topic: Stacks and Queues | Type: MSQ
+Subtopic: Abstract Data Types
+
+Which statements describe standard stack and queue operations?
+
+A. A FIFO queue always removes its largest value.
+B. A queue removes the earliest enqueued remaining element.
+C. A stack removes the most recently pushed remaining element.
+D. A stack requires sorting all elements before each pop.
+
+--------------------------------------------------------------------------------
+
+Question 32
+Subject: Data Structures | Topic: Stacks and Queues | Type: NAT
+Subtopic: Circular Queue
+
+A circular queue uses an array of 12 slots indexed from 0. A separate count distinguishes full and empty. Initially empty, both front and rear (the next insertion index) equal 1. After 3 enqueues followed by 1 dequeues, what is front?
+
+--------------------------------------------------------------------------------
+
+Question 33
+Subject: Data Structures | Topic: Stacks and Queues | Type: NAT
+Subtopic: Postfix Evaluation
+
+Evaluate the postfix expression "3 2 + 12 1 * -" using exact integer arithmetic. Its value is ______.
+
+--------------------------------------------------------------------------------
+
+Question 34
+Subject: Data Structures | Topic: Trees | Type: MSQ
+Subtopic: BST Properties
+
+Insert the distinct keys [43, 83, 71, 22, 67, 76] into an initially empty ordinary BST. Which statements are true?
+
+A. The root key is 22.
+B. The height in edges is 3.
+C. The inorder traversal is [83, 76, 71, 67, 43, 22].
+D. There are 3 leaf nodes.
+
+--------------------------------------------------------------------------------
+
+Question 35
+Subject: Data Structures | Topic: Trees | Type: MSQ
+Subtopic: Balanced Search Trees
+
+Which statements about ordinary BSTs and AVL trees with distinct keys are correct?
+
+A. Every AVL tree is a complete binary tree.
+B. AVL search has O(log n) worst-case time.
+C. An ordinary unbalanced BST always has logarithmic height.
+D. Inorder traversal of a BST lists keys in increasing order.
+
+--------------------------------------------------------------------------------
+
+Question 36
+Subject: Data Structures | Topic: Trees | Type: NAT
+Subtopic: Full Binary Trees
+
+A nonempty full binary tree (each internal node has exactly two children) has 12 leaves. Its total number of nodes is ______.
+
+--------------------------------------------------------------------------------
+
+Question 37
+Subject: Algorithms | Topic: Complexity | Type: MSQ
+Subtopic: Asymptotic Time Bounds
+
+For F(n)=n^1*(log2 n)^7 and n tending to infinity, which statements are true?
+
+A. F(n) is Theta(n^1).
+B. F(n) is O(n^0).
+C. F(n) is Omega(n^1).
+D. F(n) is O(n^2).
+
+--------------------------------------------------------------------------------
+
+Question 38
+Subject: Algorithms | Topic: Complexity | Type: NAT
+Subtopic: Auxiliary Space and Recursion
+
+A recursive procedure F(m) first allocates an array of 1*m integer cells, then calls F(m/2) if m>1, and only releases its array when that recursive call returns. Division is exact on powers of two. For F(128), what is the maximum number of simultaneously live array cells? Exclude call-frame overhead.
+
+--------------------------------------------------------------------------------
+
+Question 39
+Subject: Algorithms | Topic: Complexity | Type: NAT
+Subtopic: Loop Counting
+
+For integer n=75, count executions of work() in:
+for (i=1; i<n; ++i)
+  for (j=i; j<n; j+=i)
+    work();
+
+--------------------------------------------------------------------------------
+
+Question 40
+Subject: Algorithms | Topic: Complexity Theory | Type: MSQ
+Subtopic: Polynomial Reductions
+
+B is NP-complete. The following arrows denote polynomial-time many-one reductions: [('D', 'C'), ('C', 'G'), ('G', 'B'), ('B', 'F')]. Using only these facts and transitivity, which classifications follow?
+
+A. G is necessarily in NP.
+B. D is necessarily NP-hard.
+C. D is necessarily in NP.
+D. G is necessarily NP-hard.
+
+--------------------------------------------------------------------------------
+
+Question 41
+Subject: Algorithms | Topic: Divide and Conquer | Type: MCQ
+Subtopic: Maximum Subarray
+
+For array [-12, -3, 10, 7, -8, 15, 11, 4, 2, -7, 14, -6], a nonempty contiguous subarray may be chosen. What is its maximum sum? Use the divide-and-conquer split into a left optimum, right optimum, and best crossing sum.
+
+A. 50
+B. 49
+C. 48
+D. 47
+
+--------------------------------------------------------------------------------
+
+Question 42
+Subject: Algorithms | Topic: Dynamic Programming | Type: NAT
+Subtopic: Coin Change
+
+Coin denominations are [4, 6, 7, 8], with unlimited copies of each. How many unordered combinations total exactly 20? Different orders of the same multiset count once.
+
+--------------------------------------------------------------------------------
+
+Question 43
+Subject: Algorithms | Topic: Dynamic Programming | Type: MSQ
+Subtopic: Design Properties
+
+Which statements about dynamic programming are correct?
+
+A. Every greedy choice is optimal whenever DP is applicable.
+B. Dynamic programming always uses O(1) auxiliary space.
+C. A tabulation order must respect dependencies between DP states.
+D. Memoization can avoid recomputing identical subproblems.
+
+--------------------------------------------------------------------------------
+
+Question 44
+Subject: Algorithms | Topic: Dynamic Programming | Type: MCQ
+Subtopic: Matrix Chain Multiplication
+
+A chain of matrices has dimension vector [14, 2, 8, 10, 10]: matrix i has dimensions p[i-1] by p[i]. The minimum number of scalar multiplications required is ______.
+
+A. 639
+B. 641
+C. 640
+D. 642
+
+--------------------------------------------------------------------------------
+
+Question 45
+Subject: Algorithms | Topic: Graph Algorithms | Type: MCQ
+Subtopic: Minimum Spanning Trees
+
+An undirected connected graph has vertices 0..3 and weighted edges (u,v,weight) [(0, 1, 16), (1, 2, 9), (2, 3, 15), (1, 3, 18)]. Its minimum spanning tree weight is ______.
+
+A. 39
+B. 42
+C. 41
+D. 40
+
+--------------------------------------------------------------------------------
+
+Question 46
+Subject: Algorithms | Topic: Graph Algorithms | Type: MCQ
+Subtopic: Negative Edges
+
+Which single-source shortest-path algorithm handles negative edge weights and can detect a negative cycle reachable from the source?
+
+A. Ordinary Dijkstra without modifications
+B. Unweighted BFS
+C. Bellman-Ford
+D. Kruskal
+
+--------------------------------------------------------------------------------
+
+Question 47
+Subject: Algorithms | Topic: Graph Algorithms | Type: MSQ
+Subtopic: Weighted Graph Properties
+
+Consider the connected undirected graph with vertices 0..4 and weighted edges [(0, 1, 2), (1, 2, 15), (2, 3, 1), (3, 4, 19), (2, 4, 13)]. Which statements are correct?
+
+A. The MST total weight is 31.
+B. The distance from 0 to 4 is 30.
+C. Dijkstra's algorithm is applicable to these edge weights.
+D. Every spanning tree has 5 edges.
+
+--------------------------------------------------------------------------------
+
+Question 48
+Subject: Algorithms | Topic: Greedy Algorithms | Type: MCQ
+Subtopic: Activity Selection
+
+Activities have (start,finish) pairs [(0, 4), (2, 5), (4, 6), (7, 9), (3, 10), (9, 16), (15, 17), (19, 20)]. One machine can run one activity at a time; an activity may start exactly when another finishes. The maximum number of compatible activities is ______.
+
+A. 4
+B. 7
+C. 5
+D. 6
+
+--------------------------------------------------------------------------------
+
+Question 49
+Subject: Algorithms | Topic: Greedy Algorithms | Type: NAT
+Subtopic: Huffman Coding
+
+Symbol frequencies are [5, 9, 2, 22, 10, 8, 19, 29]. The weighted external path length (sum of frequency times codeword length) of an optimal binary prefix code is ______.
+
+--------------------------------------------------------------------------------
+
+Question 50
+Subject: Algorithms | Topic: Hashing | Type: NAT
+Subtopic: Quadratic Probing
+
+Insert [32, 29, 65, 41, 23] into an empty11-slot table using probe h(k,i)=(k mod11+i squared) mod11, with i starting0 for each key. Every inspected slot counts, including the final empty one. Total insertion probes = ______.
+
+--------------------------------------------------------------------------------
+
+Question 51
+Subject: Algorithms | Topic: Searching | Type: MCQ
+Subtopic: Binary Search
+
+Binary search finds 10 in sorted array [10, 12, 17, 20, 30, 34, 35, 41, 43, 51, 52, 56, 59, 73, 86]. Initially low=0, high=n-1; mid=floor((low+high)/2). Each iteration inspects A[mid], then returns on equality or excludes mid. How many iterations run?
+
+A. 4
+B. 5
+C. 3
+D. 6
+
+--------------------------------------------------------------------------------
+
+Question 52
+Subject: Algorithms | Topic: Searching | Type: NAT
+Subtopic: Linear Search
+
+Array [83, 37, 50, 49, 44, 84, 67, 25, 30, 23, 81, 75] is scanned from index0 upward for key 44, stopping at the first equal key or the end. Count one key comparison per inspected element. How many comparisons occur?
+
+--------------------------------------------------------------------------------
+
+Question 53
+Subject: Algorithms | Topic: Sorting | Type: MCQ
+Subtopic: Bubble Sort
+
+Run 1 left-to-right passes of ascending bubble sort on [77, 47, 70, 43, 59, 25, 13, 20, 16]. Pass p (starting0) compares j=0..n-2-p and swaps adjacent out-of-order keys. What is the full array afterward?
+
+A. [47, 70, 43, 59, 25, 13, 20, 16, 77]
+B. [77, 47, 70, 43, 59, 25, 13, 20, 16]
+C. [77, 16, 20, 13, 25, 59, 43, 70, 47]
+D. [13, 16, 20, 25, 43, 47, 59, 70, 77]
+
+--------------------------------------------------------------------------------
+
+Question 54
+Subject: Algorithms | Topic: Sorting | Type: NAT
+Subtopic: Counting Sort Prefix Counts
+
+Counting sort receives [5, 5, 6, 0, 6, 0, 0, 5, 1, 1, 3, 3, 6, 2, 0], whose keys lie in0..7. Let C[v] after prefix accumulation equal the number of input keys at most v. What is C[1]?
+
+--------------------------------------------------------------------------------
+
+Question 55
+Subject: Algorithms | Topic: Sorting | Type: MCQ
+Subtopic: Quicksort Analysis
+
+Quicksort sorts [22, 67, 29, 87, 81, 88, 25, 56, 71, 89], always choosing the last key as pivot. Partition scans left to right, constructing smaller-key and larger-key arrays while preserving relative order inside each array. It compares each other key with the pivot exactly once. Count these key comparisons over all recursive calls; singleton and empty arrays need none. Total = ______.
+
+A. 26
+B. 27
+C. 28
+D. 25
+
+--------------------------------------------------------------------------------
+
+Question 56
+Subject: Theory of Computation | Topic: Context Free Grammar | Type: MCQ
+Subtopic: Chomsky Normal Form
+
+A CFG in Chomsky normal form derives a nonempty word of length 45. There are no epsilon or unit productions. How many production applications occur in any parse of that word?
+
+A. 89
+B. 90
+C. 91
+D. 88
+
+--------------------------------------------------------------------------------
+
+Question 57
+Subject: Theory of Computation | Topic: Context Free Grammar | Type: NAT
+Subtopic: Grammar and Length Constraints
+
+The start grammar is S -> 0^5 S 1^2 | T and T -> 2 T 2 | epsilon. Exponents denote literal repetitions, and the alphabet is {0,1,2}. How many DISTINCT words of length 69 are generated?
+
+--------------------------------------------------------------------------------
+
+Question 58
+Subject: Theory of Computation | Topic: Context Free Language | Type: MSQ
+Subtopic: CYK Membership
+
+The start symbol is S. Select ALL words generated by this CNF grammar.
+S -> S B | S A | 0
+A -> A A
+B -> A B | B B | 0 | 1
+
+A. 11110
+B. 00011
+C. 00111
+D. 01100
+
+--------------------------------------------------------------------------------
+
+Question 59
+Subject: Theory of Computation | Topic: Context Free Language | Type: MSQ
+Subtopic: Language Hierarchy
+
+Select ALL true classifications for the languages below. Alphabet symbols a,b,c are distinct. The fixed constants are 5, 2 and 6.
+
+A. {a^(5n)b^(2n) : n>=0} is context-free
+B. {a^(5n)b^(2n) : n>=0} is regular
+C. {a^n b^n : 0<=n<=6} is regular
+D. {a^n b^n c^n : n>=6} is context-free
+
+--------------------------------------------------------------------------------
+
+Question 60
+Subject: Theory of Computation | Topic: Context Free Language | Type: NAT
+Subtopic: Palindrome Counting
+
+Over an alphabet with 5 distinct symbols, how many palindromes have length exactly 18?
+
+--------------------------------------------------------------------------------
+
+Question 61
+Subject: Theory of Computation | Topic: Finite Automata | Type: NAT
+Subtopic: Binary Remainder Automata
+
+Interpret each length-14 binary word as a nonnegative integer, allowing leading zeros. How many such words have value 5 modulo 10?
+
+--------------------------------------------------------------------------------
+
+Question 62
+Subject: Theory of Computation | Topic: Finite Automata | Type: MSQ
+Subtopic: DFA Simulation
+
+Select ALL words accepted by this DFA.
+Start state: q0. Accepting states: {q0, q1, q3, q5}.
+State | 0 | 1
+q0 | q5 | q1
+q1 | q2 | q1
+q2 | q5 | q2
+q3 | q4 | q2
+q4 | q3 | q4
+q5 | q0 | q3
+
+A. 01110
+B. 11000
+C. 11011
+D. 00010
+
+--------------------------------------------------------------------------------
+
+Question 63
+Subject: Theory of Computation | Topic: Finite Automata | Type: NAT
+Subtopic: Subset Construction
+
+An epsilon-NFA has start state 0 and the following transitions. In subset construction, how many reachable DFA states occur, including the empty subset if reachable? Do not minimize.
+State | 0 targets | 1 targets | epsilon targets
+0 | {} | {3} | {}
+1 | {0, 4} | {0, 3} | {}
+2 | {2, 4} | {} | {}
+3 | {1, 3} | {} | {}
+4 | {} | {1, 2} | {}
+
+--------------------------------------------------------------------------------
+
+Question 64
+Subject: Theory of Computation | Topic: Push-down Automata | Type: MSQ
+Subtopic: Deterministic PDA Languages
+
+A DPDA requires an a-block followed by a b-block. It pushes 2 X symbols per a and pops one X per b; it accepts at end only when all X symbols have been removed. Select ALL accepted words from candidates ['aaaaaaaaaabbbbbbbbbbbbbbbbbbbb', 'aaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbb', 'aaaaaaaaaabbbbbbbbbbbbbbbbbbbbb', 'aaaaaaaaaaabbbbbbbbbbbbbbbbbbbb']. The empty word is also accepted.
+
+A. aaaaaaaaaaabbbbbbbbbbbbbbbbbbbb
+B. aaaaaaaaaabbbbbbbbbbbbbbbbbbbbb
+C. aaaaaaaaaabbbbbbbbbbbbbbbbbbbb
+D. aaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbb
+
+--------------------------------------------------------------------------------
+
+Question 65
+Subject: Theory of Computation | Topic: Push-down Automata | Type: MCQ
+Subtopic: Stack Usage
+
+A DPDA reads ()(()(())), pushing one X for each opening parenthesis and popping one X for each closing parenthesis. Its stack initially contains only bottom marker Z. What is the maximum total number of stack symbols present, INCLUDING Z?
+
+A. 5
+B. 3
+C. 6
+D. 4
+
+--------------------------------------------------------------------------------
+
+Question 66
+Subject: Theory of Computation | Topic: Regular Expression | Type: MCQ
+Subtopic: Forbidden Substrings
+
+How many binary strings of length 13 do NOT contain 110 as a contiguous substring?
+
+A. 988
+B. 986
+C. 987
+D. 985
+
+--------------------------------------------------------------------------------
+
+Question 67
+Subject: Theory of Computation | Topic: Regular Expression | Type: MSQ
+Subtopic: Regular Expression Membership
+
+Let R=0^5(10)^31*, where superscripts 5 and 3 mean exact repetition. Select ALL words in L(R).
+
+A. 000001010101111
+B. 000000101010111
+C. 00000101010111
+D. 000001010101110
+
+--------------------------------------------------------------------------------
+
+Question 68
+Subject: Theory of Computation | Topic: Regular Grammar | Type: MCQ
+Subtopic: Right-Linear Grammar
+
+The start symbol is Q0. How many DISTINCT length-8 terminal words are generated by this right-linear grammar?
+Q0 -> 0 Q4 | 1 Q2 | epsilon
+Q1 -> 0 Q2 | 1 Q3 | epsilon
+Q2 -> 0 Q6 | 1 Q4
+Q3 -> 0 Q6 | 1 Q5
+Q4 -> 0 Q0 | 1 Q6
+Q5 -> 0 Q1 | 1 Q0 | epsilon
+Q6 -> 0 Q0 | 1 Q2 | epsilon
+
+A. 137
+B. 138
+C. 136
+D. 135
+
+--------------------------------------------------------------------------------
+
+Question 69
+Subject: Theory of Computation | Topic: Regular Language | Type: MSQ
+Subtopic: Closure Constructions
+
+Let A={aaa, aba, abb, bab, bba, bbb} and B={aaa, aab, abb, baa, bab, bbb}. Select ALL listed words belonging to the intersection.
+
+A. bab
+B. aaa
+C. bbb
+D. abb
+
+--------------------------------------------------------------------------------
+
+Question 70
+Subject: Theory of Computation | Topic: Regular Language | Type: NAT
+Subtopic: Counting Accepted Words
+
+How many binary words of length 17 have zero count congruent to 2 modulo 3 and one count congruent to 3 modulo 4?
+
+--------------------------------------------------------------------------------
+
+Question 71
+Subject: Theory of Computation | Topic: Regular Language | Type: MCQ
+Subtopic: Pumping Lemma
+
+For the usual pumping-lemma witness w=0^61^6, take a decomposition with |x|=4, |y|=2 and |xy|<=6. After pumping y with exponent i=2, what is the absolute difference between the numbers of 0 and 1 symbols?
+
+A. 4
+B. 3
+C. 2
+D. 1
+
+--------------------------------------------------------------------------------
+
+Question 72
+Subject: Theory of Computation | Topic: Turing Machine | Type: NAT
+Subtopic: Binary Increment Trace
+
+A TM starts in qscan with its head on the first bit of 1111110. Cells outside the word are blank B. Transitions are (qscan,0)->(qscan,0,R), (qscan,1)->(qscan,1,R), (qscan,B)->(qcarry,B,L), (qcarry,1)->(qcarry,0,L), (qcarry,0)->(HALT,1,S), and (qcarry,B)->(HALT,1,S). S means no head movement. Count every transition, including the one entering HALT. How many transitions occur?
+
+--------------------------------------------------------------------------------
+
+Question 73
+Subject: Theory of Computation | Topic: Undecidability | Type: MSQ
+Subtopic: Decidable and Undecidable Problems
+
+Select ALL true statements. Each machine or grammar is part of the finite problem input; the step bound is 159.
+
+A. Whether an encoded TM accepts a fixed length-6 input within 159 steps is decidable
+B. Whether a 7-state DFA accepts that input is decidable
+C. Whether two arbitrary CFGs have equal languages is decidable
+D. Whether an arbitrary TM ever halts on that input is decidable
+
+--------------------------------------------------------------------------------
+
+Question 74
+Subject: Compiler Design | Topic: Code Generation | Type: MCQ
+Subtopic: Register Allocation
+
+For the fully parenthesized expression ((h+(b*f))+(e+((e*(e+h))+(h*c)))), find the minimum registers needed for spill-free tree evaluation. All operands must be loaded into registers. Operations are binary + and *, operands may be evaluated in either order, and the result can overwrite an operand register. Do not reuse common subexpressions.
+
+A. 5
+B. 4
+C. 2
+D. 3
+
+--------------------------------------------------------------------------------
+
+Question 75
+Subject: Compiler Design | Topic: Code Optimization | Type: NAT
+Subtopic: Constant Folding
+
+Apply constant folding recursively to ((x*(((y+x)*(y+7))*6))+(x+((5*5)*(9+x)))). x and y are unknown runtime inputs. Fold an operation only when BOTH operands are compile-time constants; perform no algebraic identities or reassociation. How many runtime arithmetic operations remain?
+
+--------------------------------------------------------------------------------
+
+Question 76
+Subject: Compiler Design | Topic: Code Optimization | Type: NAT
+Subtopic: Induction Variables
+
+A loop visits i=8,9,...,58 and needs t=13*i once per iteration. Initialize t=13*8 before the loop, then use strength reduction to update t only BETWEEN consecutive iterations. How many additions of constant 13 are needed?
+
+--------------------------------------------------------------------------------
+
+Question 77
+Subject: Compiler Design | Topic: Code Optimization | Type: MSQ
+Subtopic: Pruned SSA Phi Functions
+
+Entry branches into blocks L and R, which rejoin at J. L assigns {b, c, d, f, z} and R assigns {b, c, d, f, z}; every assignment creates a new SSA version. All variables already have entry definitions. Variables live immediately after J are {b, d, f}. Select ALL listed variables requiring a phi function at J in pruned SSA.
+
+A. c
+B. d
+C. f
+D. b
+
+--------------------------------------------------------------------------------
+
+Question 78
+Subject: Compiler Design | Topic: Intermediate Code Generation | Type: NAT
+Subtopic: Basic Block Formation
+
+Using the standard leader algorithm, count ALL basic blocks, including blocks that later reachability analysis might remove.
+1: x = x + 5
+2: if x < 6 goto 2
+3: x = x + 1
+4: x = x + 2
+5: x = x + 1
+6: x = x + 3
+7: x = x + 5
+8: x = x + 3
+9: goto 12
+10: x = x + 9
+11: x = x + 1
+12: return x
+
+--------------------------------------------------------------------------------
+
+Question 79
+Subject: Compiler Design | Topic: Intermediate Code Generation | Type: NAT
+Subtopic: Boolean Backpatching
+
+A short-circuit expression combines 17 relational atoms using only OR. Each atom emits one unresolved true jump and one unresolved false jump. Internal links to the next atom are backpatched immediately. How many jumps remain in the COMPLETE expression's true list?
+
+--------------------------------------------------------------------------------
+
+Question 80
+Subject: Compiler Design | Topic: Lexical Analysis | Type: MSQ
+Subtopic: Identifier Recognition
+
+Identifiers match [A-Za-z_][A-Za-z0-9_]*, but the exact keyword switch is reserved. Select ALL valid identifier tokens from ['data40', '_data40', '40data', 'switch']. Each option must be consumed as one identifier.
+
+A. 40data
+B. switch
+C. _data40
+D. data40
+
+--------------------------------------------------------------------------------
+
+Question 81
+Subject: Compiler Design | Topic: Lexical Analysis | Type: MCQ
+Subtopic: Maximal Munch
+
+Tokenize x6+++y5-->=z11; using C-like longest-match tokens. Recognized multi-character operators include ++, -- and >=. Which option is the token sequence? Spaces separate tokens in the options.
+
+A. x6 + ++ y5 -- >= z11 ;
+B. x6 ++ + y5 - ->= z11 ;
+C. x6 + + + y5 - - > = z11 ;
+D. x6 ++ + y5 -- >= z11 ;
+
+--------------------------------------------------------------------------------
+
+Question 82
+Subject: Compiler Design | Topic: Lexical Analysis | Type: NAT
+Subtopic: Token Language Counting
+
+An identifier has length exactly 5. Its first character is one of 6 letters; each later character may be any of these letters or one of 3 digits. There are no reserved words. How many identifiers are possible?
+
+--------------------------------------------------------------------------------
+
+Question 83
+Subject: Compiler Design | Topic: Parsing | Type: NAT
+Subtopic: Expression Ambiguity
+
+For E->E+E | id, how many parse trees generate x0+y1+y2+x3+y4+y5+y6+y7+y8+y9+y10+x11+x12+y13? Each displayed variable is one id token.
+
+--------------------------------------------------------------------------------
+
+Question 84
+Subject: Compiler Design | Topic: Parsing | Type: MSQ
+Subtopic: FIRST Sets
+
+With S as the start symbol, select ALL symbols in FIRST(A).
+S -> f B | B | A
+A -> C | b C | C d | B
+B -> C | d C | C e | d
+C -> epsilon | e
+
+A. e
+B. b
+C. epsilon
+D. d
+
+--------------------------------------------------------------------------------
+
+Question 85
+Subject: Compiler Design | Topic: Parsing | Type: MSQ
+Subtopic: FOLLOW Sets
+
+The start symbol is S and $ is the end marker. Select ALL listed symbols in FOLLOW(A).
+S -> C | A d | A
+A -> B | d C | d B
+B -> x C | epsilon | C | C y
+C -> epsilon | y
+
+A. z
+B. y
+C. d
+D. e
+
+--------------------------------------------------------------------------------
+
+Question 86
+Subject: Compiler Design | Topic: Parsing | Type: MCQ
+Subtopic: SLR Table Conflicts
+
+For the augmented grammar START->S below, construct the canonical LR(0) states and SLR ACTION table. How many ACTION cells have conflicting actions? Count each cell once.
+S -> C x | A | B
+A -> B | x C
+B -> z C | C d | C | epsilon
+C -> epsilon | d
+
+A. 8
+B. 5
+C. 7
+D. 6
+
+--------------------------------------------------------------------------------
+
+Question 87
+Subject: Compiler Design | Topic: Runtime Environment | Type: NAT
+Subtopic: Activation Record Layout
+
+A stack frame has a 24-byte header followed IN ORDER by locals with sizes [1, 1, 8, 1, 2] bytes. Each local is aligned to its size, capped at 8 bytes. The complete frame is rounded up to a multiple of 8 bytes. What is its total size?
+
+--------------------------------------------------------------------------------
+
+Question 88
+Subject: Compiler Design | Topic: Runtime Environment | Type: MCQ
+Subtopic: Linking and Relocation
+
+Object modules have lengths [176, 72, 204, 292, 368] bytes and are placed consecutively in that order, starting at address 2120, without alignment gaps. Modules are numbered from 0. A symbol in module 3 has relative byte offset 149. What is its relocated absolute address?
+
+A. 2720
+B. 2723
+C. 2722
+D. 2721
+
+--------------------------------------------------------------------------------
+
+Question 89
+Subject: Compiler Design | Topic: Runtime Environment | Type: MCQ
+Subtopic: Static and Dynamic Links
+
+A language has lexical nesting levels 0 through 10. A currently executing procedure at level 10 accesses a variable declared at level 9. Access uses one static link per lexical level and no display. The dynamic call chain has 16 frames. How many static links are followed?
+
+A. 3
+B. 0
+C. 2
+D. 1
+
+--------------------------------------------------------------------------------
+
+Question 90
+Subject: Compiler Design | Topic: Syntax-directed Translation | Type: MCQ
+Subtopic: Semantic Action Order
+
+Grammar E -> num * E {print("*")} | num. Each num prints its own value immediately when read. Print tokens are separated by one space. What is printed for 6 * 7 * 8 * 7 * 15 * 1 * 4?
+
+A. 6 7 8 7 15 1 4 * * * * * *
+B. 6 * 7 * 8 * 7 * 15 * 1 * 4
+C. * * * * * * 6 7 8 7 15 1 4
+D. 6 7 * 8 * 7 * 15 * 1 * 4 *
+
+--------------------------------------------------------------------------------
+
+Question 91
+Subject: Compiler Design | Topic: Syntax-directed Translation | Type: MCQ
+Subtopic: Type Widths
+
+In a toy type system, int has width 4 bytes and every pointer has width 4 bytes. A record contains array(6,array(7,int)) followed by array(7,pointer(int)). There is NO padding or header. What is the record width in bytes?
+
+A. 198
+B. 196
+C. 197
+D. 195
+
+--------------------------------------------------------------------------------
+
+Question 92
+Subject: Operating Systems | Topic: CPU Scheduling | Type: NAT
+Subtopic: Multiprogramming Utilization
+
+Each of 5 independent processes is blocked on I/O with probability 80% at a random instant. The CPU is idle exactly when ALL are blocked. Ignore overhead. What is CPU utilization as a percentage? Round the numerical answer to four decimal places if necessary.
+
+--------------------------------------------------------------------------------
+
+Question 93
+Subject: Operating Systems | Topic: CPU Scheduling | Type: NAT
+Subtopic: Time-Slice Overhead
+
+4 permanently ready CPU-bound processes use round robin. Every dispatch cycle consists of 2000 microseconds of useful execution followed by a context switch costing 150 microseconds. Include the switch after EVERY quantum. What percentage of elapsed CPU time is switching overhead? Round the numerical answer to four decimal places if necessary.
+
+--------------------------------------------------------------------------------
+
+Question 94
+Subject: Operating Systems | Topic: Deadlock | Type: MSQ
+Subtopic: Banker Safety Sequences
+
+There are resource types A,B,C and processes P0..P3. Remaining NEED is given directly, not maximum claim. Available=[1, 2, 3]. Select ALL safe completion sequences.
+Process | Allocation | Remaining NEED
+0 | [0, 3, 0] | [0, 0, 2]
+1 | [1, 0, 1] | [0, 1, 1]
+2 | [3, 0, 2] | [0, 4, 3]
+3 | [2, 1, 1] | [0, 3, 1]
+
+A. P0 -> P3 -> P1 -> P2
+B. P2 -> P0 -> P1 -> P3
+C. P0 -> P1 -> P2 -> P3
+D. P3 -> P2 -> P1 -> P0
+
+--------------------------------------------------------------------------------
+
+Question 95
+Subject: Operating Systems | Topic: Deadlock | Type: MCQ
+Subtopic: Identical Resource Guarantees
+
+Processes have maximum demands [3, 4, 2] units of one identical reusable resource type. Units are acquired one at a time and retained until completion; every process eventually completes once its maximum is available. What is the MINIMUM total number of units guaranteeing freedom from resource deadlock for every allocation?
+
+A. 8
+B. 7
+C. 9
+D. 6
+
+--------------------------------------------------------------------------------
+
+Question 96
+Subject: Operating Systems | Topic: Disk Scheduling | Type: MCQ
+Subtopic: FCFS Seek Distance
+
+A disk has cylinders 0..199. Its head starts at 49. All requests are already pending in arrival order [191, 107, 5, 174, 195, 87, 73, 3]. Using FCFS, how many cylinder crossings occur in total? Ignore rotational latency.
+
+A. 711
+B. 709
+C. 710
+D. 712
+
+--------------------------------------------------------------------------------
+
+Question 97
+Subject: Operating Systems | Topic: Disk Scheduling | Type: MCQ
+Subtopic: SCAN Endpoint Convention
+
+A SCAN disk has cylinders 0..199. The head starts at 33 moving upward; pending requests are [20, 163, 24, 190, 149, 181, 89, 29, 195, 143, 129]. It MUST reach cylinder 199 before reversing, and stops as soon as the final pending request is served. What is its total movement?
+
+A. 345
+B. 344
+C. 347
+D. 346
+
+--------------------------------------------------------------------------------
+
+Question 98
+Subject: Operating Systems | Topic: Disk Scheduling | Type: MCQ
+Subtopic: SSTF Seek Distance
+
+A disk head starts at cylinder 81, with pending requests [20, 153, 102, 26, 131, 174, 43, 195, 109]. Use SSTF; if distances tie, choose the LOWER cylinder. No requests arrive later. What is the total number of cylinder crossings?
+
+A. 290
+B. 291
+C. 289
+D. 288
+
+--------------------------------------------------------------------------------
+
+Question 99
+Subject: Operating Systems | Topic: File Systems | Type: NAT
+Subtopic: Free Space Bitmaps
+
+A volume has 2^34 bytes and fixed-size blocks of 2^10 bytes. A free-space bitmap stores exactly one bit per volume block, with no header. How many BYTES does the bitmap require?
+
+--------------------------------------------------------------------------------
+
+Question 100
+Subject: Operating Systems | Topic: File Systems | Type: NAT
+Subtopic: Indexed Allocation Capacity
+
+An inode has 9 direct pointers and one indirect pointer at EACH depth 1 through 1. Blocks contain 1024 bytes and each pointer occupies 4 bytes. Ignore file-size-field limits. What is the maximum number of DATA bytes addressable? Index blocks themselves are not file data.
+
+--------------------------------------------------------------------------------
+
+Question 101
+Subject: Operating Systems | Topic: File Systems | Type: NAT
+Subtopic: Internal Fragmentation
+
+Files have sizes [1109, 1035, 623, 1155, 457, 1460, 647, 1313] bytes and use 512-byte data blocks. Every file gets whole private blocks and no tail packing is allowed. Ignore metadata. What is the TOTAL unused space inside allocated data blocks?
+
+--------------------------------------------------------------------------------
+
+Question 102
+Subject: Operating Systems | Topic: Memory Management | Type: MSQ
+Subtopic: Comparing Page Policies
+
+Use 4 initially empty frames. Select ALL true statements for reference string [2, 3, 6, 1, 3, 5, 1, 4, 4, 0, 3, 6, 3, 2, 2].
+
+A. OPT has strictly fewer faults than LRU
+B. LRU has 11 faults
+C. FIFO has 10 faults
+D. OPT has 8 faults
+
+--------------------------------------------------------------------------------
+
+Question 103
+Subject: Operating Systems | Topic: Memory Management | Type: NAT
+Subtopic: TLB Effective Access Time
+
+A serial TLB lookup takes 5 ns. Main-memory access is 40 ns. The page table has 4 levels, all in memory; hit rate is 90%. A hit requires one data-memory access after lookup. A miss walks every level and then accesses data. Ignore caches and faults. What is effective access time in ns?
+
+--------------------------------------------------------------------------------
+
+Question 104
+Subject: Operating Systems | Topic: Memory Management | Type: MSQ
+Subtopic: Working Sets
+
+The reference sequence is [7, 8, 7, 1, 8, 8, 7, 9, 1, 4, 8, 1, 8, 2, 5, 4, 2, 2, 2, 6]. References are numbered from 1. W(t,delta) includes the most recent delta references INCLUDING reference t. With t=15 and delta=4, select ALL pages in the working set.
+
+A. 8
+B. 0
+C. 6
+D. 2
+
+--------------------------------------------------------------------------------
+
+Question 105
+Subject: Operating Systems | Topic: Process | Type: MCQ
+Subtopic: Process Creation
+
+One process begins. For 1 iterations only the ORIGINAL process calls fork once per iteration; children do not fork during this phase. Then EVERY existing process calls fork once per iteration for 2 more iterations. No process exits. How many NEW processes are created, excluding the original?
+
+A. 8
+B. 7
+C. 9
+D. 6
+
+--------------------------------------------------------------------------------
+
+Question 106
+Subject: Operating Systems | Topic: Process Synchronization | Type: MCQ
+Subtopic: Counting Semaphores
+
+A counting semaphore starts at 9. In a legal interleaving, 5 wait operations and 15 signal operations all COMPLETE; every wait decrements once and every signal increments once. What is its final value?
+
+A. 21
+B. 19
+C. 20
+D. 18
+
+--------------------------------------------------------------------------------
+
+Question 107
+Subject: Operating Systems | Topic: Process Synchronization | Type: MSQ
+Subtopic: Semaphore Admission
+
+4 threads each call wait(S), execute a critical region, then signal(S) exactly once. S is a counting semaphore initialized to 2; wait/signal are atomic and no thread signals before its own region ends. Select ALL true statements.
+
+A. At most 2 threads can be inside the region at once
+B. Mutual exclusion of individual threads is guaranteed
+C. S must be initialized to 4 to avoid resource deadlock in this code
+D. All 4 threads can eventually finish under fair scheduling
+
+--------------------------------------------------------------------------------
+
+Question 108
+Subject: Operating Systems | Topic: System Call | Type: NAT
+Subtopic: Interrupt Overhead
+
+A device transfers 262144 bytes, generating one completion interrupt per transfer block of at most 256 bytes, including the final partial block. Each interrupt consumes 5 microseconds of CPU time. What is the total interrupt-handling CPU time in microseconds?
+
+--------------------------------------------------------------------------------
+
+Question 109
+Subject: Operating Systems | Topic: Thread | Type: MCQ
+Subtopic: Parallel Speedup
+
+A program takes 120 seconds on one CPU. Exactly 75% of that time is perfectly parallelizable; the rest is serial. With 3 ideal CPUs and no parallel overhead, what is the execution time in seconds?
+
+A. 62
+B. 61
+C. 59
+D. 60
+
+--------------------------------------------------------------------------------
+
+Question 110
+Subject: Database Management System | Topic: ER Model | Type: NAT
+Subtopic: ER to Relational Mapping
+
+Entity set Part has a primary key consisting of 1 attribute(s) and 4 other attribute(s). Entity set Faculty has a primary key of 1 attribute(s). A many-to-many relationship set Works between Part and Faculty has 2 descriptive attribute(s).
+
+The number of attributes in the relational table that represents Works is ______.
+
+--------------------------------------------------------------------------------
+
+Question 111
+Subject: Database Management System | Topic: ER Model | Type: MCQ
+Subtopic: Relationship Constraints
+
+Entity sets Branch (key bid, attribute x) and Driver (key did, attribute y) are related by a binary relationship R with cardinality Branch 1 : N Driver; participation is partial on both sides.
+
+What is the minimum number of tables needed to represent this design in the relational model (NULLs allowed, at least 1NF)?
+
+A. 1
+B. 2
+C. 3
+D. 4
+
+--------------------------------------------------------------------------------
+
+Question 112
+Subject: Database Management System | Topic: File System | Type: NAT
+Subtopic: B+ Tree
+
+The following keys are inserted, in the given order, into an initially empty B+ tree:
+
+3, 83, 95, 49, 50, 8, 51, 55
+
+Each node (leaf or internal) can hold at most 2 keys. When a leaf overflows, the left leaf keeps the first ⌈(2+1)/2⌉ keys and a copy of the smallest key of the new right leaf is inserted into the parent. When an internal node overflows, the left node keeps the first ⌈2/2⌉ keys, the next key moves up to the parent and the remaining keys go to the new right node.
+
+After all insertions, the number of internal (non-leaf) nodes, including the root is ______.
+
+--------------------------------------------------------------------------------
+
+Question 113
+Subject: Database Management System | Topic: File System | Type: NAT
+Subtopic: Indexing
+
+A file has 10000 records of 100 bytes each, stored unspanned in blocks of 2048 bytes and NOT ordered on the attribute EmpId. A dense secondary index is built on EmpId (a key, 12 bytes); a block pointer takes 4 bytes.
+
+The average number of block accesses for a linear search on the data file WITHOUT the index (searching on a key field) is ______.
+
+--------------------------------------------------------------------------------
+
+Question 114
+Subject: Database Management System | Topic: Integrity Constraints | Type: MSQ
+Subtopic: Constraints and Triggers
+
+Consider the schema
+Dept(dname PRIMARY KEY, floor INT NOT NULL)
+Emp(eid INT PRIMARY KEY, ename NOT NULL, dname REFERENCES Dept(dname), salary INT CHECK (salary >= 30000))
+
+with the instance
+
+Dept:
+| dname | floor |
+|-------|-------|
+| CS    | 10    |
+| EE    | 20    |
+| ME    | 30    |
+
+Emp:
+| eid | ename  | dname | salary |
+|-----|--------|-------|--------|
+| 1   | Asha   | CS    | 50000  |
+| 2   | Bala   | EE    | 60000  |
+| 3   | Chitra | CS    | 55000  |
+
+Each of the following statements is executed independently on this instance. Which of them is/are REJECTED by the DBMS?
+
+A. INSERT INTO Dept VALUES ('EE', 50);
+B. INSERT INTO Emp VALUES (2, 'Esha', 'CS', 40000);
+C. INSERT INTO Emp VALUES (5, 'Farid', 'CE', 52000);
+D. INSERT INTO Emp VALUES (4, 'Dev', 'ME', 45000);
+
+--------------------------------------------------------------------------------
+
+Question 115
+Subject: Database Management System | Topic: Integrity Constraints | Type: NAT
+Subtopic: Referential Integrity
+
+Consider the relation Rel(A, C) where A is the primary key and C is a foreign key referencing A with ON DELETE CASCADE. The current instance is:
+
+Rel:
+| A  | C  |
+|----|----|
+| 23 | 20 |
+| 28 | 17 |
+| 10 | 28 |
+| 7  | 7  |
+| 20 | 17 |
+| 27 | 20 |
+| 4  | 4  |
+| 17 | 17 |
+| 6  | 23 |
+
+The number of tuples that are ADDITIONALLY deleted when the tuple with A = 20 is deleted is ______.
+
+--------------------------------------------------------------------------------
+
+Question 116
+Subject: Database Management System | Topic: Normal Form | Type: MCQ
+Subtopic: Decomposition
+
+Relation R(A, B, C, D) with functional dependencies {D → BC, A → D, B → D} is decomposed into R1(B, C, D), R2(A, B, D).
+
+The decomposition is:
+
+A. Lossless join and dependency preserving
+B. Lossless join but not dependency preserving
+C. Dependency preserving but not lossless join
+D. Neither lossless join nor dependency preserving
+
+--------------------------------------------------------------------------------
+
+Question 117
+Subject: Database Management System | Topic: Normal Form | Type: MSQ
+Subtopic: FD Closure
+
+Consider the relation R(A, B, C, D, E, F) with functional dependencies {AE → B, AB → E, D → BE}.
+
+Which of the following functional dependencies is/are logically implied by the given set?
+
+A. BE → AC
+B. BD → E
+C. CF → D
+D. BE → A
+
+--------------------------------------------------------------------------------
+
+Question 118
+Subject: Database Management System | Topic: Relational Algebra | Type: MCQ
+Subtopic: Joins
+
+The natural join R(A, B) ⋈ S(C, D) of two relations with no common attributes is equal to:
+
+A. The empty relation
+B. R ∪ S
+C. R ∩ S
+D. R × S
+
+--------------------------------------------------------------------------------
+
+Question 119
+Subject: Database Management System | Topic: Relational Algebra | Type: MSQ
+Subtopic: Relational Algebra Queries
+
+Consider the relations Student(sid), Course(cid, dept) and Enroll(sid, cid), where Enroll.sid and Enroll.cid are foreign keys. Set semantics are used.
+
+Which of the following relational algebra expressions compute(s) the sids of students who are NOT enrolled in any CS course (include students with no enrolment)?
+
+A. π_sid(Student) − π_sid(Enroll)
+B. π_sid(σ_dept≠'CS'(Student × Course))
+C. π_sid(Student) − π_sid(Enroll ⋈ σ_dept='CS'(Course))
+D. π_sid(Student) − π_sid(σ_dept='CS'(Enroll ⋈ Course))
+
+--------------------------------------------------------------------------------
+
+Question 120
+Subject: Database Management System | Topic: Relational Schema | Type: MSQ
+Subtopic: Candidate Keys
+
+Consider the relation R(A, B, C, D, E, F) with functional dependencies {DF → A, AB → D, B → C, C → A}.
+
+Which of the following attribute sets is/are candidate keys of R?
+
+A. BEF
+B. AE
+C. BCEF
+D. AEF
+
+--------------------------------------------------------------------------------
+
+Question 121
+Subject: Database Management System | Topic: Relational Schema | Type: MCQ
+Subtopic: Foreign Keys
+
+A value of a foreign key attribute in the referencing relation must:
+
+A. Never be NULL
+B. Match a value of any attribute in the referenced relation
+C. Match a primary key value in the referenced relation, or be NULL
+D. Be unique in the referencing relation
+
+--------------------------------------------------------------------------------
+
+Question 122
+Subject: Database Management System | Topic: SQL | Type: MCQ
+Subtopic: Aggregation
+
+Consider the relation Employee shown below.
+
+Employee:
+| eid | ename  | dept | salary | mgr  |
+|-----|--------|------|--------|------|
+| 101 | Jai    | CE   | 50000  | NULL |
+| 102 | Chitra | CS   | 80000  | 101  |
+| 103 | Gita   | ME   | 75000  | 102  |
+| 104 | Indu   | ME   | 75000  | 102  |
+| 105 | Dev    | CS   | 30000  | 103  |
+| 106 | Hari   | CS   | 50000  | 103  |
+| 107 | Asha   | EE   | 40000  | 103  |
+
+SELECT dept, COUNT(*)
+FROM Employee
+GROUP BY dept
+HAVING COUNT(*) > 2;
+
+The number of rows returned by the above query is:
+
+A. 1
+B. 2
+C. 3
+D. 4
+
+--------------------------------------------------------------------------------
+
+Question 123
+Subject: Database Management System | Topic: SQL | Type: NAT
+Subtopic: Nested Queries
+
+Consider the table Employee given below.
+
+Employee:
+| eid | ename  | dept | salary | mgr  |
+|-----|--------|------|--------|------|
+| 101 | Gita   | CE   | 60000  | NULL |
+| 102 | Asha   | CS   | NULL   | 101  |
+| 103 | Hari   | EE   | 70000  | 101  |
+| 104 | Farid  | CE   | 75000  | 102  |
+| 105 | Kiran  | CE   | 40000  | 102  |
+| 106 | Jai    | CS   | NULL   | 101  |
+| 107 | Dev    | CS   | 70000  | 101  |
+| 108 | Chitra | CE   | 50000  | 102  |
+
+SELECT COUNT(*)
+FROM Employee
+WHERE salary > (SELECT AVG(salary) FROM Employee);
+
+The value returned by the query is ______.
+
+--------------------------------------------------------------------------------
+
+Question 124
+Subject: Database Management System | Topic: Transactions | Type: MSQ
+Subtopic: Conflict Serializability
+
+Consider the schedule
+
+S: R1(Z), R2(Y), W2(Y), W1(Z), R2(Z), R3(X), R3(Y), W3(Y)
+
+Which of the following serial schedules is/are conflict equivalent to S?
+
+A. T3 → T1 → T2
+B. T1 → T2 → T3
+C. T2 → T3 → T1
+D. T3 → T2 → T1
+
+--------------------------------------------------------------------------------
+
+Question 125
+Subject: Database Management System | Topic: Transactions | Type: MCQ
+Subtopic: Locking Protocols
+
+Which one of the following transactions follows the (basic) two-phase locking protocol?
+
+A. lock-X(C), write(C), unlock(C), lock-S(A), read(A), unlock(A), commit
+B. lock-S(C), read(C), unlock(C), lock-X(A), read(A), write(A), unlock(A), commit
+C. lock-X(C), read(C), lock-X(A), write(C), unlock(C), read(A), write(A), unlock(A), commit
+D. lock-S(C), read(C), lock-S(A), unlock(C), read(A), lock-X(C), write(C), unlock(A), unlock(C), commit
+
+--------------------------------------------------------------------------------
+
+Question 126
+Subject: Database Management System | Topic: Transactions | Type: MSQ
+Subtopic: Recoverability
+
+Consider the schedule (Ci denotes the commit of Ti):
+
+S: R2(X), R3(Y), R1(X), W1(Y), W1(X), R3(X), W2(X), C1, R2(Y), C2, C3
+
+Which of the following statements about S is/are TRUE?
+
+A. S is cascadeless (avoids cascading aborts)
+B. S is strict
+C. S is conflict serializable
+D. S is recoverable
+
+--------------------------------------------------------------------------------
+
+Question 127
+Subject: Database Management System | Topic: Tuple Calculus | Type: MCQ
+Subtopic: Safety
+
+Which tuple relational calculus expression is unsafe?
+
+A. {t | t ∈ R ∧ t[A] > 5}
+B. {t | ∃s ∈ R (t[A] = s[A])}
+C. {t | t ∈ R ∧ ¬(t ∈ S)}
+D. {t | ¬(t ∈ R)}
+
+--------------------------------------------------------------------------------
+
+Question 128
+Subject: Database Management System | Topic: Tuple Calculus | Type: NAT
+Subtopic: Tuple Relational Calculus
+
+Consider the relations R(A, B) and S(A, C) with the instance below.
+
+R:
+| A | B |
+|---|---|
+| 2 | 1 |
+| 3 | 1 |
+| 3 | 3 |
+| 5 | 3 |
+| 6 | 1 |
+
+S:
+| A | C |
+|---|---|
+| 5 | 3 |
+| 6 | 1 |
+| 6 | 3 |
+
+The number of tuples returned by the tuple relational calculus query
+
+{t | ∃u ∈ R (t[A] = u[A]) ∧ ¬∃s ∈ S (t[A] = s[A])}
+
+is ______.
+
+--------------------------------------------------------------------------------
+
+Question 129
+Subject: Computer Networks | Topic: Application Layer | Type: MCQ
+Subtopic: DNS Resolution
+
+A local resolver has no relevant cache entries and sequentially queries a root server, a TLD server, and an authoritative server. Their query/response RTTs are 35, 40, and 35 ms. Referrals supply all necessary server addresses. Resolver/client overhead is zero. After DNS, retrieving one tiny HTTP object needs a TCP handshake and one HTTP RTT, each 80 ms. What is the total time in ms?
+
+A. 270
+B. 272
+C. 271
+D. 269
+
+--------------------------------------------------------------------------------
+
+Question 130
+Subject: Computer Networks | Topic: Application Layer | Type: MCQ
+Subtopic: Email
+
+Which protocol supports server-side mailbox folders and synchronization across mail clients?
+
+A. FTP control
+B. SMTP alone
+C. IMAP
+D. ICMP
+
+--------------------------------------------------------------------------------
+
+Question 131
+Subject: Computer Networks | Topic: Application Layer | Type: NAT
+Subtopic: Parallel Nonpersistent HTTP
+
+A base HTML document refers to 29 equal tiny objects at one server. DNS is cached. The client uses nonpersistent HTTP, opening at most 4 TCP connections simultaneously for the referenced objects, in batches. RTT=60 ms. Each connection needs 1 RTT for setup and 1 RTT for its object. Objects are discovered only after fetching the base HTML, which also needs 2 RTTs. Ignore transmission. What is the total retrieval time in ms?
+
+--------------------------------------------------------------------------------
+
+Question 132
+Subject: Computer Networks | Topic: Data Link Layer | Type: NAT
+Subtopic: ALOHA
+
+In pure ALOHA, total attempted transmissions (including retries) form a Poisson load G = 0.7 per frame time. All frames have the same duration. Successful throughput as a percentage of one successful frame per frame time is what? Round to two decimals.
+
+--------------------------------------------------------------------------------
+
+Question 133
+Subject: Computer Networks | Topic: Data Link Layer | Type: MCQ
+Subtopic: Go-back-N Sequence Numbers
+
+A Go-back-N link has rate 5 Mb/s, data frame size 2000 bits, and one-way propagation 14 ms. ACK transmission and processing times are zero; there are no errors. What is the minimum number of sequence-number bits that permits a sender window large enough for 100% utilization?
+
+A. 7
+B. 9
+C. 8
+D. 6
+
+--------------------------------------------------------------------------------
+
+Question 134
+Subject: Computer Networks | Topic: Data Link Layer | Type: MCQ
+Subtopic: Hamming Code
+
+A binary Hamming code must correct any single-bit error in a block containing 85 data bits. What is the minimum number of Hamming parity bits? Do not add an overall SECDED parity bit.
+
+A. 7
+B. 9
+C. 6
+D. 8
+
+--------------------------------------------------------------------------------
+
+Question 135
+Subject: Computer Networks | Topic: Network Fundamentals | Type: NAT
+Subtopic: Packet Switching
+
+A message consists of 8 equal packets of 500 bytes each (headers already included). It crosses 4 identical 2 Mb/s links, each with 7 ms propagation delay. Routers use store-and-forward; links can operate simultaneously, queues start empty, and processing delay is zero. The sender sends packets back to back. Time until the last packet arrives, in ms, is what? Round to two decimals.
+
+--------------------------------------------------------------------------------
+
+Question 136
+Subject: Computer Networks | Topic: Network Fundamentals | Type: MCQ
+Subtopic: Store-and-forward Switching
+
+19 packets, each 1500 bytes including headers, traverse three store-and-forward links with rates 4, 10, and 1 Mb/s in that order. Propagation, processing, and cross traffic are absent. Links work concurrently and the sender transmits back to back. When does the final packet finish at the destination, in ms? Round to two decimals.
+
+A. 307.80
+B. 228
+C. 233.20
+D. 232.20
+
+--------------------------------------------------------------------------------
+
+Question 137
+Subject: Computer Networks | Topic: Network Fundamentals | Type: NAT
+Subtopic: Transmission and Propagation Delay
+
+A 1500-byte packet is sent on a 20 Mb/s link of length 400 km. The propagation speed is 2 × 10^8 m/s. There is no queueing or processing delay. From the first bit leaving the sender until the last bit reaches the receiver, the elapsed time in milliseconds is what? Round to two decimal places.
+
+--------------------------------------------------------------------------------
+
+Question 138
+Subject: Computer Networks | Topic: Network Layer | Type: MCQ
+Subtopic: CIDR Aggregation
+
+The 4 consecutive /22 networks starting at 10.221.0.0 are aligned to a common supernet boundary. Which single CIDR block covers exactly these networks?
+
+A. 10.221.0.0/20
+B. 10.221.0.0/19
+C. 10.221.0.0/22
+D. 10.221.0.0/21
+
+--------------------------------------------------------------------------------
+
+Question 139
+Subject: Computer Networks | Topic: Network Layer | Type: MSQ
+Subtopic: IPv4 Fragment Fields
+
+An unfragmented IPv4 packet has 3800 payload bytes, a 20-byte header, DF=0 and MF=0. It is fragmented for MTU 576 using maximal non-final payloads. Which statements are correct?
+
+A. It produces 7 fragments
+B. The final fragment has offset 414 in 8-byte units
+C. The receiving router must reassemble these fragments before forwarding them
+D. Every fragment, including the final one, has MF=1
+
+--------------------------------------------------------------------------------
+
+Question 140
+Subject: Computer Networks | Topic: Network Layer | Type: MSQ
+Subtopic: Subnet Address Ranges
+
+For subnet 10.219.160.0/19, using the conventional network/broadcast exclusions, which statements are correct?
+
+A. The directed broadcast address is 10.219.191.255
+B. The subnet mask is 255.255.224.0
+C. There are 8190 usable host addresses
+D. The network address 10.219.160.0 is a usable unicast host address
+
+--------------------------------------------------------------------------------
+
+Question 141
+Subject: Computer Networks | Topic: Routing | Type: NAT
+Subtopic: Controlled Flooding
+
+A connected undirected tree has 11 routers. A source floods one packet. Every router forwards a received packet on every incident link except the arrival link. The source sends on all its incident links. No packets are lost. How many individual link transmissions occur in total?
+
+--------------------------------------------------------------------------------
+
+Question 142
+Subject: Computer Networks | Topic: Routing | Type: NAT
+Subtopic: Distance Vector Update
+
+Router A receives the following distance-vector information: neighbor B: link cost 11, advertised distance to Z 9; neighbor C: link cost 9, advertised distance to Z 15; neighbor D: link cost 11, advertised distance to Z 26. A has no direct link to Z and no other neighbors. All advertisements are used as supplied. What new distance to Z does Bellman-Ford compute?
+
+--------------------------------------------------------------------------------
+
+Question 143
+Subject: Computer Networks | Topic: Routing | Type: MCQ
+Subtopic: Link State
+
+A link-state routing protocol supplies each router with:
+
+A. An Ethernet broadcast domain spanning the Internet
+B. A topology database from flooded link-state information
+C. Only the complete TCP state of every host
+D. Only one neighbor's final forwarding table
+
+--------------------------------------------------------------------------------
+
+Question 144
+Subject: Computer Networks | Topic: Transport Layer | Type: NAT
+Subtopic: TCP RTT Estimation
+
+A TCP estimator has SRTT=70 ms and RTTVAR=5 ms. A valid new RTT sample is 340 ms. First update RTTVAR=(3/4)RTTVAR+(1/4)|old SRTT−sample|, then SRTT=(7/8)old SRTT+(1/8)sample. Compute the raw RTO=SRTT+4RTTVAR in ms, ignoring timer granularity and any minimum RTO. Round to two decimals.
+
+--------------------------------------------------------------------------------
+
+Question 145
+Subject: Computer Networks | Topic: Transport Layer | Type: MCQ
+Subtopic: TCP Slow Start and Congestion Avoidance
+
+Use this round-based TCP model: initial cwnd=1 MSS and ssthresh=32 MSS. In each round the sender sends cwnd full segments, all acknowledged before the next round. At round end, cwnd doubles up to ssthresh if below it; otherwise it increases by exactly 1 MSS. There is no loss. How many data segments are sent during the first 8 rounds?
+
+A. 132
+B. 129
+C. 131
+D. 130
+
+--------------------------------------------------------------------------------
+
+Question 146
+Subject: Computer Networks | Topic: Transport Layer | Type: MSQ
+Subtopic: UDP and IPv4 Header Lengths
+
+One UDP datagram carries 743 application bytes in an IPv4 packet with a 20-byte IP header and no options. There is no fragmentation. Which statements are correct?
+
+A. The UDP header alone is 8 bytes
+B. The IPv4 total length field is 771 bytes
+C. UDP supplies retransmission to guarantee delivery
+D. The UDP length field is 751 bytes
+
+--------------------------------------------------------------------------------
+
+Question 147
+Subject: Computer Organization and Architecture | Topic: ALU Data Path and Control Unit | Type: NAT
+Subtopic: Data Path
+
+A processor data path has 1 internal bus(es). In a single-bus design the ALU has one input from a temporary register TEMP and its output goes to register Z; with two buses both ALU inputs come from buses and the result goes to Z; with three buses the result can be written to a register in the same cycle. Each register transfer over a bus takes one clock cycle. Ignoring instruction fetch and decode, the minimum number of clock cycles to execute ADD R1, R2, R3 is ______.
+
+--------------------------------------------------------------------------------
+
+Question 148
+Subject: Computer Organization and Architecture | Topic: ALU Data Path and Control Unit | Type: NAT
+Subtopic: Microprogrammed Control
+
+A control memory stores 1024 microinstructions, each 32 bits wide. Its size in bytes is ______.
+
+--------------------------------------------------------------------------------
+
+Question 149
+Subject: Computer Organization and Architecture | Topic: Addressing Modes | Type: MCQ
+Subtopic: Addressing Modes
+
+A two-word instruction LOAD AC, X is stored at addresses 500 and 501; its address field X = 300, R1 = 330 and R2 (index register) = 55. Relevant memory contents are shown below.
+
+Memory:
+| Address | Content |
+|---------|---------|
+| 86      | 834     |
+| 300     | 86      |
+| 330     | 748     |
+| 355     | 277     |
+| 630     | 960     |
+
+If the addressing mode is immediate (using R1 where a register is needed, and R2 as the index register), the operand loaded into AC is:
+
+A. 834
+B. 748
+C. 300
+D. 86
+
+--------------------------------------------------------------------------------
+
+Question 150
+Subject: Computer Organization and Architecture | Topic: Cache Memory | Type: MSQ
+Subtopic: Cache Mapping
+
+A 2-way set-associative cache has 8 lines (4 sets). Main memory blocks are numbered from 0. Which of the following main memory blocks map to set 0?
+
+A. Block 281
+B. Block 244
+C. Block 114
+D. Block 240
+
+--------------------------------------------------------------------------------
+
+Question 151
+Subject: Computer Organization and Architecture | Topic: Cache Memory | Type: NAT
+Subtopic: Cache Replacement
+
+An array A[64][64] of 8-byte elements is stored in row-major order starting at physical address 0. A direct-mapped data cache of 1024 bytes with 16-byte blocks is initially empty. A program reads every element of A once, with the inner loop over rows (column by column); only accesses to A use the cache.
+
+The total number of cache misses is ______.
+
+--------------------------------------------------------------------------------
+
+Question 152
+Subject: Computer Organization and Architecture | Topic: Cache Memory | Type: MCQ
+Subtopic: Memory Access Time
+
+A cache has 32-byte blocks. On a miss, main memory delivers the first word after an initial latency of 40 ns, and then transfers 8 bytes every 2 ns over the bus (the latency is paid once per block). The hit time is 1 ns and the hit ratio is 0.97; on a miss the block is fetched after the cache lookup. The average memory access time (in ns) is:
+
+A. 5.86
+B. 2.44
+C. 4.12
+D. 1.24
+
+--------------------------------------------------------------------------------
+
+Question 153
+Subject: Computer Organization and Architecture | Topic: IO Interface | Type: MCQ
+Subtopic: DMA
+
+A device transfers data to memory using cycle-stealing DMA at 200 KB/s (1 KB = 1024 bytes). Each DMA transfer moves one 1-byte word and steals one memory cycle of 250 ns from the CPU. The percentage of time for which the CPU is blocked from memory is:
+
+A. 5.12
+B. 5.00
+C. 51.20
+D. 0.05
+
+--------------------------------------------------------------------------------
+
+Question 154
+Subject: Computer Organization and Architecture | Topic: IO Interface | Type: MCQ
+Subtopic: I/O Techniques
+
+A 200 MHz CPU polls an I/O device 100 times per second; each poll costs 500 clock cycles. The percentage of CPU time spent on polling is:
+
+A. 0.000
+B. 0.250
+C. 0.025
+D. 2.500
+
+--------------------------------------------------------------------------------
+
+Question 155
+Subject: Computer Organization and Architecture | Topic: Interrupt | Type: NAT
+Subtopic: Interrupt Handling
+
+A device delivers data at 2 KB/s (1 KB = 1024 bytes) and raises one interrupt per 4 byte(s). Servicing an interrupt (including saving and restoring state) takes 4 μs of CPU time; the time to actually move the data is negligible. The percentage of CPU time spent servicing the device's interrupts is ______ (rounded off to two decimal places where necessary).
+
+--------------------------------------------------------------------------------
+
+Question 156
+Subject: Computer Organization and Architecture | Topic: Machine Instruction | Type: MCQ
+Subtopic: CPU Performance
+
+Processor P1 runs at 1000 MHz with CPI 3; processor P2 runs at 3000 MHz with CPI 3 for the same program (same instruction count). The ratio (execution time on P2)/(execution time on P1) is:
+
+A. 3.03
+B. 3.00
+C. 1.00
+D. 0.33
+
+--------------------------------------------------------------------------------
+
+Question 157
+Subject: Computer Organization and Architecture | Topic: Machine Instruction | Type: NAT
+Subtopic: Instruction Formats
+
+An instruction set uses fixed 32-bit instructions and 8-bit address fields. There are 44716 two-address instructions. Using an expanding opcode, the maximum number of one-address instructions is ______.
+
+--------------------------------------------------------------------------------
+
+Question 158
+Subject: Computer Organization and Architecture | Topic: Machine Instruction | Type: MCQ
+Subtopic: Instruction Set
+
+Which characteristic is typical of a RISC architecture?
+
+A. Variable-length instructions with microcoded control
+B. Load/store architecture with fixed-length instructions
+C. Memory-to-memory arithmetic
+D. Many complex addressing modes
+
+--------------------------------------------------------------------------------
+
+Question 159
+Subject: Computer Organization and Architecture | Topic: Memory Chip Design | Type: MSQ
+Subtopic: Memory Interleaving
+
+Main memory is built from 8 modules (0 to 7) using low-order interleaving of word addresses. Which of the following word addresses are located in module 4?
+
+A. Address 2628
+B. Address 731
+C. Address 3667
+D. Address 2781
+
+--------------------------------------------------------------------------------
+
+Question 160
+Subject: Computer Organization and Architecture | Topic: Memory Chip Design | Type: MCQ
+Subtopic: Memory Organization
+
+A 512K × 4 memory is to be built using 16K × 4 RAM chips. The number of address bits that must be decoded to select a row (bank) of chips is:
+
+A. 32
+B. 5
+C. 6
+D. 19
+
+--------------------------------------------------------------------------------
+
+Question 161
+Subject: Computer Organization and Architecture | Topic: Pipeline Processor | Type: MSQ
+Subtopic: Pipeline Hazards
+
+Consider the instruction sequence (first operand is the destination, except SW which only reads):
+
+I1: LW R3, 0(R1)
+I2: ADD R1, R1, R6
+I3: ADD R3, R3, R3
+I4: MUL R5, R4, R1
+
+Which of the following true (read-after-write) data dependences exist?
+
+A. I3 depends on I2
+B. I4 depends on I1
+C. I4 depends on I2
+D. I3 depends on I1
+
+--------------------------------------------------------------------------------
+
+Question 162
+Subject: Computer Organization and Architecture | Topic: Pipeline Processor | Type: NAT
+Subtopic: Pipeline Performance
+
+A non-pipelined processor executes each instruction through 4 stages whose delays are 100, 120, 150, 200 ps (one after another). It is converted into a 4-stage pipeline; each pipeline register adds 5 ps. Ignore hazards.
+
+The total time (in ps) to execute 50 instructions on the pipelined processor is ______.
+
+--------------------------------------------------------------------------------
+
+Question 163
+Subject: Computer Organization and Architecture | Topic: Secondary Storage | Type: NAT
+Subtopic: Disk Access Time
+
+A disk rotates at 10000 RPM, has an average seek time of 4 ms, 64 sectors per track and 4096 bytes per sector. The time (in ms) to read 4 complete adjacent tracks of one cylinder (head switching is instantaneous and reading may start at any sector only after the first sector of a track arrives, i.e. one average latency for the first track and full rotations thereafter) is ______ (rounded off to two decimal places).
+
+--------------------------------------------------------------------------------
+
+Question 164
+Subject: Computer Organization and Architecture | Topic: Secondary Storage | Type: MCQ
+Subtopic: Disk Organization
+
+A disk pack has 2 recording surfaces, 4096 tracks per surface, 64 sectors per track and 4096 bytes per sector. The minimum number of bits needed to address an individual sector is:
+
+A. 19
+B. 20
+C. 18
+D. 31
+
+--------------------------------------------------------------------------------
+
+Question 165
+Subject: Digital Logic | Topic: Boolean Algebra | Type: MCQ
+Subtopic: Boolean Expressions
+
+The expression A ⊕ B ⊕ C equals 1 when:
+
+A. An odd number of A, B, C are 1
+B. An even number of A, B, C are 1
+C. All of A, B, C are 1 only
+D. Exactly two of A, B, C are 1
+
+--------------------------------------------------------------------------------
+
+Question 166
+Subject: Digital Logic | Topic: Boolean Algebra | Type: NAT
+Subtopic: Boolean Functions
+
+The number of symmetric Boolean functions of 2 variables (output depends only on the number of 1s in the input) is ______.
+
+--------------------------------------------------------------------------------
+
+Question 167
+Subject: Digital Logic | Topic: Boolean Algebra | Type: MSQ
+Subtopic: Boolean Identities
+
+For Boolean variables X, Y and Z, which of the following identities is/are valid for all values of the variables?
+
+A. X ⊕ X ⊕ Y = Y'
+B. (X + Y)' = X' + Y'
+C. (XY)' = X' + Y'
+D. (X ⊕ Y) + Z = (X + Z) ⊕ (Y + Z)
+
+--------------------------------------------------------------------------------
+
+Question 168
+Subject: Digital Logic | Topic: Boolean Algebra | Type: MCQ
+Subtopic: K-Map Minimization
+
+The minimal sum-of-products form of the Boolean function
+
+F(A, B, C) = Σm(2, 3, 5, 7)
+
+is:
+
+A. A'B + AB'C
+B. A'B + AC
+C. A'B + ABC
+D. A'B + C
+
+--------------------------------------------------------------------------------
+
+Question 169
+Subject: Digital Logic | Topic: Boolean Algebra | Type: MSQ
+Subtopic: Logic Gates
+
+Which of the following sets of operations is/are functionally complete?
+
+A. {XOR, AND, 1}
+B. {AND, NOT}
+C. {AND, OR}
+D. {OR, NOT}
+
+--------------------------------------------------------------------------------
+
+Question 170
+Subject: Digital Logic | Topic: Combinational Circuit | Type: MSQ
+Subtopic: Adders
+
+An 4-bit adder computes A + B with A = 1100 and B = 1111 (2's complement operands). Which of the following flags is/are set after the operation?
+
+A. Overflow flag V = 1
+B. Zero flag Z = 1
+C. Carry flag C = 1
+D. Sign (negative) flag N = 1
+
+--------------------------------------------------------------------------------
+
+Question 171
+Subject: Digital Logic | Topic: Combinational Circuit | Type: MCQ
+Subtopic: Encoder
+
+An 8-to-3 priority encoder gives the highest priority to the input with the largest index. Its inputs I7 … I0 are 10110001. The output code is:
+
+A. 100
+B. 000
+C. 111
+D. 110
+
+--------------------------------------------------------------------------------
+
+Question 172
+Subject: Digital Logic | Topic: Combinational Circuit | Type: NAT
+Subtopic: Multiplexer
+
+An 8-to-1 multiplexer has select lines S2 = A, S1 = B, S0 = C (S2 is the most significant) and data inputs I0 = D', I1 = D, I2 = 1, I3 = D, I4 = D', I5 = 1, I6 = D, I7 = 1.
+
+The number of minterms in the output function F(A, B, C, D) is ______.
+
+--------------------------------------------------------------------------------
+
+Question 173
+Subject: Digital Logic | Topic: Combinational Circuit | Type: NAT
+Subtopic: ROM and PLA
+
+A combinational circuit with 6 inputs and 8 outputs is implemented with a ROM. The minimum ROM size in bits is ______.
+
+--------------------------------------------------------------------------------
+
+Question 174
+Subject: Digital Logic | Topic: Number System | Type: MCQ
+Subtopic: Binary Codes
+
+Which code changes exactly one bit between successive values?
+
+A. Excess-3
+B. 2's complement
+C. Gray code
+D. BCD
+
+--------------------------------------------------------------------------------
+
+Question 175
+Subject: Digital Logic | Topic: Number System | Type: NAT
+Subtopic: Booth's Algorithm
+
+Booth's algorithm (radix-2) is used to multiply an 8-bit multiplicand by the 8-bit multiplier 11000011. The number of subtractions of the multiplicand performed is ______.
+
+--------------------------------------------------------------------------------
+
+Question 176
+Subject: Digital Logic | Topic: Number System | Type: MSQ
+Subtopic: IEEE 754 Floating Point
+
+Which of the following statements about IEEE 754 single precision is/are TRUE?
+
+A. There are two representations of zero (+0 and −0)
+B. An exponent field of all 0s with a non-zero fraction represents a denormalised number
+C. An exponent field of all 1s with a zero fraction represents ±infinity
+D. The hidden leading 1 is also present for denormalised numbers
+
+--------------------------------------------------------------------------------
+
+Question 177
+Subject: Digital Logic | Topic: Number System | Type: MSQ
+Subtopic: Overflow
+
+The following operations are performed on 5-bit 2's complement numbers. Which of them result(s) in an arithmetic overflow?
+
+A. 11010 − 10011
+B. 10000 + 10001
+C. 01111 + 11011
+D. 00001 + 00100
+
+--------------------------------------------------------------------------------
+
+Question 178
+Subject: Digital Logic | Topic: Number System | Type: MCQ
+Subtopic: Signed Number Representation
+
+The 16-bit pattern 1011001111111001 represents which decimal value in sign-magnitude representation?
+
+A. -19463
+B. 46073
+C. -13305
+D. -19462
+
+--------------------------------------------------------------------------------
+
+Question 179
+Subject: Digital Logic | Topic: Sequential Circuit | Type: NAT
+Subtopic: Counters
+
+A 3-bit synchronous sequential circuit uses three T flip-flops with outputs Q2 Q1 Q0 (Q2 is the MSB). The flip-flop inputs are:
+
+T2 = Q0
+T1 = (Q1 ⊕ Q2)Q2'
+T0 = (Q0' + Q1')Q2'
+
+The circuit starts in state Q2Q1Q0 = 011.
+
+The number of distinct states visited (including the initial state) is ______.
+
+--------------------------------------------------------------------------------
+
+Question 180
+Subject: Digital Logic | Topic: Sequential Circuit | Type: MCQ
+Subtopic: Finite State Machines
+
+A Mealy machine with initial state A is described by the state table below.
+
+State table:
+| Present state | Next, output (x = 0) | Next, output (x = 1) |
+|---------------|----------------------|----------------------|
+| A             | B, 1                 | D, 0                 |
+| B             | A, 0                 | A, 0                 |
+| C             | A, 1                 | D, 0                 |
+| D             | C, 0                 | A, 1                 |
+
+For the input sequence 010010 (applied left to right), the output sequence is:
+
+A. 010001
+B. 101000
+C. 000101
+D. 010111
+
+--------------------------------------------------------------------------------
+
+Question 181
+Subject: Digital Logic | Topic: Sequential Circuit | Type: MCQ
+Subtopic: Shift Registers
+
+An 5-bit shift register with bits b4 … b0 shifts right on every clock; the new b4 is b4 ⊕ b2 (computed from the old contents). Starting from b4…b0 = 00001, the number of distinct states in the repeating cycle is:
+
+A. 1
+B. 2
+C. 3
+D. 4
+
+--------------------------------------------------------------------------------
+
+Question 182
+Subject: Digital Logic | Topic: Sequential Circuit | Type: NAT
+Subtopic: State Minimization
+
+Consider the Mealy machine described by the following state table.
+
+State table:
+| Present state | Next state, output (x = 0) | Next state, output (x = 1) |
+|---------------|----------------------------|----------------------------|
+| A             | C, 0                       | G, 0                       |
+| B             | C, 0                       | G, 0                       |
+| C             | C, 0                       | A, 1                       |
+| D             | G, 1                       | E, 0                       |
+| E             | C, 0                       | G, 0                       |
+| F             | G, 1                       | E, 0                       |
+| G             | G, 1                       | G, 1                       |
+
+The number of states in the equivalent minimal (reduced) state machine is ______.
+
+--------------------------------------------------------------------------------
+
+Question 183
+Subject: Engineering Mathematics | Topic: Calculus | Type: MSQ
+Subtopic: Continuity and Differentiability
+
+Which of the following functions is/are continuous but not differentiable at the indicated point?
+
+A. e^(−|x|) at x = 0
+B. x|x| at x = 0
+C. x³ at x = 0
+D. |x − 2| at x = 2
+
+--------------------------------------------------------------------------------
+
+Question 184
+Subject: Engineering Mathematics | Topic: Calculus | Type: NAT
+Subtopic: Differentiation
+
+The coefficient of x^4 in the Maclaurin series expansion of (1 + 1x)^6 is ______ (rounded off to four decimal places).
+
+--------------------------------------------------------------------------------
+
+Question 185
+Subject: Engineering Mathematics | Topic: Calculus | Type: NAT
+Subtopic: Integration
+
+The value of ∫ from 0 to π/2 of sin^3(x) dx is ______ (rounded off to three decimal places).
+
+--------------------------------------------------------------------------------
+
+Question 186
+Subject: Engineering Mathematics | Topic: Calculus | Type: NAT
+Subtopic: Limits
+
+The value of lim (x → 3) [−x^3 + 4x^2 − 4x + 3] / [5x^3 − 10x^2 − 15x] is ______ (rounded off to two decimal places).
+
+--------------------------------------------------------------------------------
+
+Question 187
+Subject: Engineering Mathematics | Topic: Calculus | Type: MSQ
+Subtopic: Maxima and Minima
+
+Let f(x) = x^4 − 4x^3 + 4x^2 − 2. At which of the following points does f have a local min?
+
+A. x = -1
+B. x = 2
+C. x = 0
+D. x = -2
+
+--------------------------------------------------------------------------------
+
+Question 188
+Subject: Engineering Mathematics | Topic: Calculus | Type: MCQ
+Subtopic: Mean Value Theorem
+
+The value of c in (0, 2) satisfying Lagrange's mean value theorem for f(x) = x³ on [0, 2] is:
+
+A. 1.414
+B. 1.155
+C. 1.000
+D. 0.667
+
+--------------------------------------------------------------------------------
+
+Question 189
+Subject: Engineering Mathematics | Topic: Linear Algebra | Type: NAT
+Subtopic: Determinant
+
+The determinant of the matrix
+
+| -1   3   3 |
+|  0   0  -2 |
+|  2   3  -2 |
+
+is ______.
+
+--------------------------------------------------------------------------------
+
+Question 190
+Subject: Engineering Mathematics | Topic: Linear Algebra | Type: MCQ
+Subtopic: Eigenvalues and Eigenvectors
+
+The vector [1, 0, 1]ᵀ is an eigenvector of
+
+A =
+|  4   2  -2 |
+|  0   2   0 |
+|  0   0   2 |
+
+The corresponding eigenvalue is:
+
+A. 4
+B. 3
+C. 2
+D. 8
+
+--------------------------------------------------------------------------------
+
+Question 191
+Subject: Engineering Mathematics | Topic: Linear Algebra | Type: MCQ
+Subtopic: LU Decomposition
+
+The matrix
+
+A =
+|  3   0  -3 |
+| -9   1  10 |
+|  0   1   4 |
+
+is factorised as A = LU (Doolittle), where L is lower triangular with 1s on the diagonal and U is upper triangular. The entry l21 (row 2, column 1 of L) is:
+
+A. 1
+B. 3
+C. -3
+D. -2
+
+--------------------------------------------------------------------------------
+
+Question 192
+Subject: Engineering Mathematics | Topic: Linear Algebra | Type: MSQ
+Subtopic: Matrices
+
+Which of the following statements about square matrices is/are TRUE?
+
+A. Every nilpotent matrix has all eigenvalues equal to 0
+B. det(AB) = det(A)·det(B)
+C. Every idempotent matrix (A² = A) has eigenvalues only 0 or 1
+D. det(A + B) = det(A) + det(B)
+
+--------------------------------------------------------------------------------
+
+Question 193
+Subject: Engineering Mathematics | Topic: Linear Algebra | Type: NAT
+Subtopic: Rank
+
+The number of linearly independent solutions of Ax = 0 for the matrix A
+
+|  -6   -4   -8 |
+|   4   -7  -12 |
+|  11  -14   -6 |
+|   5    4    2 |
+
+is ______.
+
+--------------------------------------------------------------------------------
+
+Question 194
+Subject: Engineering Mathematics | Topic: Linear Algebra | Type: MCQ
+Subtopic: System of Linear Equations
+
+Consider the system of linear equations
+
+2x + z = 3
+2x − y = 1
+λx + y + 4z = μ
+
+The system has a unique solution if and only if:
+
+A. λ = 6, for every value of μ
+B. λ ≠ 6 and μ = 11 only
+C. λ ≠ 6, for every value of μ
+D. λ = 6 and μ = 11
+
+--------------------------------------------------------------------------------
+
+Question 195
+Subject: Engineering Mathematics | Topic: Numerical Method | Type: NAT
+Subtopic: Bisection Method
+
+The bisection method is applied to f(x) = x^3 + x − 8 starting with the interval [0, 3]. After 4 bisections (interval halvings), the midpoint of the current interval is ______ (rounded off to four decimal places).
+
+--------------------------------------------------------------------------------
+
+Question 196
+Subject: Engineering Mathematics | Topic: Numerical Method | Type: MCQ
+Subtopic: Interpolation
+
+The quadratic polynomial p(x) passes through the points (-2, 4), (1, 1), (3, 7). The value of p(0) is:
+
+A. 1.4
+B. 2.0
+C. 4.0
+D. 0.4
+
+--------------------------------------------------------------------------------
+
+Question 197
+Subject: Engineering Mathematics | Topic: Numerical Method | Type: NAT
+Subtopic: Iterative Methods
+
+The system
+
+7x − 2y = 12
+2x + 5y + z = 3
+-x − 2y + 6z = 8
+
+is solved by the Jacobi method starting from x = y = z = 0. After the first iteration, the value of x is ______ (rounded off to four decimal places).
+
+--------------------------------------------------------------------------------
+
+Question 198
+Subject: Engineering Mathematics | Topic: Numerical Method | Type: MCQ
+Subtopic: Newton-Raphson Method
+
+The Newton–Raphson method is applied to f(x) = x² − 2 (to approximate √2) with initial guess x₀ = 3. The value of x1 is:
+
+A. 4.1667
+B. 1.8333
+C. 3.0000
+D. 2.4167
+
+--------------------------------------------------------------------------------
+
+Question 199
+Subject: Engineering Mathematics | Topic: Numerical Method | Type: MCQ
+Subtopic: Numerical Integration
+
+The error of the composite trapezoidal rule with step size h is of order:
+
+A. h²
+B. h
+C. h³
+D. h⁴
+
+--------------------------------------------------------------------------------
+
+Question 200
+Subject: Engineering Mathematics | Topic: Numerical Method | Type: NAT
+Subtopic: Numerical ODE
+
+For dy/dx = x + y with y(0) = 2, the Euler method with step size h = 0.1 gives y(0.1) ≈ ______ (rounded off to four decimal places).
